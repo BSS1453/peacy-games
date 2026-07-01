@@ -26,6 +26,7 @@
       color: var(--text-main);
       line-height: 1.6;
       overflow-x: hidden;
+      scroll-behavior: smooth; /* Sanftes Scrollen */
     }
 
     /* --- NAVIGATION --- */
@@ -34,24 +35,25 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 5%;
-      background: rgba(11, 12, 16, 0.95);
+      background: rgba(11, 12, 16, 0.90);
+      backdrop-filter: blur(10px); /* Moderner Glas-Effekt */
       position: sticky;
       top: 0;
       z-index: 1000;
-      border-bottom: 1px solid var(--accent-dark);
+      border-bottom: 1px solid rgba(69, 162, 158, 0.3);
     }
 
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--text-white);
-      text-transform: uppercase;
-      letter-spacing: 2px;
+    /* Dein neues Logo */
+    .logo-img {
+      height: 45px;
+      width: auto;
+      transition: transform 0.3s ease, filter 0.3s ease;
+      cursor: pointer;
     }
 
-    .logo span {
-      color: var(--accent-cyan);
-      text-shadow: 0 0 10px var(--accent-cyan);
+    .logo-img:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 8px var(--accent-cyan));
     }
 
     .nav-links a {
@@ -59,11 +61,13 @@
       text-decoration: none;
       margin-left: 25px;
       font-weight: 600;
-      transition: color 0.3s;
+      transition: color 0.3s, text-shadow 0.3s;
+      position: relative;
     }
 
     .nav-links a:hover {
       color: var(--accent-cyan);
+      text-shadow: 0 0 8px var(--accent-cyan);
     }
 
     /* --- HERO SECTION --- */
@@ -76,6 +80,7 @@
       text-align: center;
       padding: 0 20px;
       background: radial-gradient(circle at center, #1f2833 0%, #0b0c10 70%);
+      position: relative;
     }
 
     .hero h1 {
@@ -83,10 +88,12 @@
       color: var(--text-white);
       margin-bottom: 15px;
       text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
     .hero h1 span {
       color: var(--accent-cyan);
+      text-shadow: 0 0 15px var(--accent-cyan);
     }
 
     .hero p {
@@ -108,12 +115,15 @@
       letter-spacing: 1px;
       transition: all 0.3s ease;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
 
     .btn:hover {
       background: var(--accent-cyan);
       color: var(--bg-main);
-      box-shadow: 0 0 15px var(--accent-cyan);
+      box-shadow: 0 0 20px var(--accent-cyan);
+      transform: translateY(-2px);
     }
 
     /* --- SECTIONS COMMON --- */
@@ -140,6 +150,17 @@
       box-shadow: 0 0 8px var(--accent-cyan);
     }
 
+    /* --- SCROLL REVEAL CLASSES --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* --- PLATFORMS --- */
     .platforms-grid {
       display: grid;
@@ -151,14 +172,15 @@
       background: var(--bg-card);
       padding: 40px 20px;
       text-align: center;
-      border-radius: 8px;
+      border-radius: 12px;
       border: 1px solid rgba(102, 252, 241, 0.1);
-      transition: transform 0.3s, border-color 0.3s;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
     }
 
     .platform-card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-15px) scale(1.03);
       border-color: var(--accent-cyan);
+      box-shadow: 0 10px 25px rgba(102, 252, 241, 0.15);
     }
 
     .platform-card h3 {
@@ -180,8 +202,8 @@
       background: var(--bg-card);
       color: var(--text-main);
       border: 1px solid var(--accent-dark);
-      padding: 8px 20px;
-      border-radius: 20px;
+      padding: 8px 25px;
+      border-radius: 25px;
       cursor: pointer;
       font-weight: 600;
       transition: all 0.3s;
@@ -191,6 +213,7 @@
       background: var(--accent-cyan);
       color: var(--bg-main);
       border-color: var(--accent-cyan);
+      box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
     }
 
     .games-grid {
@@ -201,16 +224,18 @@
 
     .game-card {
       background: var(--bg-card);
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
       border: 1px solid rgba(255,255,255,0.05);
-      transition: transform 0.3s;
+      transition: all 0.4s ease;
       display: flex;
       flex-direction: column;
     }
 
     .game-card:hover {
-      transform: scale(1.02);
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(102, 252, 241, 0.2);
+      border-color: rgba(102, 252, 241, 0.5);
     }
 
     .game-img {
@@ -224,6 +249,16 @@
       font-weight: bold;
       background-size: cover;
       background-position: center;
+      transition: transform 0.5s ease;
+    }
+
+    .game-card:hover .game-img {
+      transform: scale(1.05);
+    }
+
+    .game-img-wrapper {
+      overflow: hidden;
+      height: 200px;
     }
 
     .game-content {
@@ -231,6 +266,9 @@
       display: flex;
       flex-direction: column;
       flex-grow: 1;
+      background: var(--bg-card); /* Deckt das skalierte Bild ab */
+      position: relative;
+      z-index: 2;
     }
 
     .tag {
@@ -272,12 +310,38 @@
       border-radius: 4px;
       font-weight: bold;
       font-size: 0.9rem;
-      transition: background 0.3s;
+      transition: background 0.3s, box-shadow 0.3s;
     }
 
     .store-link:hover {
       background: var(--accent-cyan);
       color: var(--bg-main);
+      box-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    /* --- MINIGAME SECTION --- */
+    .minigame-section {
+      background: #0f1318;
+      border-top: 1px solid var(--accent-dark);
+      border-bottom: 1px solid var(--accent-dark);
+      text-align: center;
+      padding: 60px 20px;
+    }
+    
+    #gameCanvas {
+      background: #0b0c10;
+      border: 2px solid var(--accent-cyan);
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(102, 252, 241, 0.2);
+      cursor: crosshair;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto 20px auto;
+    }
+
+    .game-instructions {
+      color: var(--accent-cyan);
+      font-weight: bold;
     }
 
     /* --- FOOTER --- */
@@ -285,59 +349,88 @@
       background: #07080a;
       text-align: center;
       padding: 40px 20px;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      margin-top: 50px;
+    }
+
+    /* --- DYNAMISCHE EFFEKTE (KLICK & TASTATUR) --- */
+    .click-particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      animation: explode 0.6s ease-out forwards;
+      z-index: 9999;
+    }
+
+    .key-particle {
+      position: fixed;
+      bottom: 20px;
+      color: var(--accent-cyan);
+      font-weight: bold;
+      font-size: 1.5rem;
+      pointer-events: none;
+      text-shadow: 0 0 10px var(--accent-cyan);
+      animation: floatUp 1s ease-out forwards;
+      z-index: 9999;
+    }
+
+    @keyframes explode {
+      0% { width: 0; height: 0; opacity: 1; box-shadow: 0 0 20px var(--accent-cyan); }
+      100% { width: 50px; height: 50px; opacity: 0; box-shadow: 0 0 50px transparent; }
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-100px) scale(2); opacity: 0; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
   <nav>
-    <div class="logo">PEACY<span>GAMES</span></div>
+    <a href="#hero">
+      <img src="logo.png" alt="Peacy Games" class="logo-img">
+    </a>
     <div class="nav-links">
       <a href="#hero">Home</a>
       <a href="#platforms">Platforms</a>
       <a href="#games">Our Games</a>
+      <a href="#minigame">Play!</a>
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero" id="hero">
-    <h1>We Build <span>Worlds</span></h1>
-    <p>Passionate game development for PC, Mobile, Virtual Reality, and Next-Gen Consoles.</p>
-    <a href="#games" class="btn">Discover Games</a>
+    <h1 class="reveal">We Build <span>Worlds</span></h1>
+    <p class="reveal">Passionate game development for PC, Mobile, Virtual Reality, and Next-Gen Consoles.</p>
+    <a href="#games" class="btn reveal">Discover Games</a>
   </section>
 
-  <!-- Platforms -->
   <section id="platforms">
-    <h2 class="section-title">Our Expertise</h2>
+    <h2 class="section-title reveal">Our Expertise</h2>
     <div class="platforms-grid">
-      <div class="platform-card">
+      <div class="platform-card reveal">
         <h3>PC Games</h3>
         <p>High-resolution textures, deep mechanics, and thrilling gameplay built for Steam.</p>
       </div>
-      <div class="platform-card">
+      <div class="platform-card reveal">
         <h3>Mobile Games</h3>
         <p>Addictive casual and action experiences, perfectly optimized for Android and iOS.</p>
       </div>
-      <div class="platform-card">
+      <div class="platform-card reveal">
         <h3>VR Games</h3>
         <p>Immersive virtual reality worlds that push the boundaries of perception.</p>
       </div>
-      <div class="platform-card">
+      <div class="platform-card reveal">
         <h3>Console Games</h3>
         <p>Experiences optimized for PlayStation, Xbox, and Nintendo Switch.</p>
       </div>
     </div>
   </section>
 
-  <!-- Games Showcase -->
   <section id="games">
-    <h2 class="section-title">Our Games</h2>
+    <h2 class="section-title reveal">Our Games</h2>
     
-    <!-- Filter Buttons -->
-    <div class="filter-buttons">
+    <div class="filter-buttons reveal">
       <button class="filter-btn active" onclick="filterGames('all')">All</button>
       <button class="filter-btn" onclick="filterGames('pc')">PC</button>
       <button class="filter-btn" onclick="filterGames('mobile')">Mobile</button>
@@ -345,12 +438,11 @@
       <button class="filter-btn" onclick="filterGames('console')">Console</button>
     </div>
 
-    <!-- Games Grid -->
     <div class="games-grid">
-
-      <!-- DEMON ALIVE (PC) -->
-      <div class="game-card" data-category="pc">
-        <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/66fcf1?text=Demon+Alive');"></div>
+      <div class="game-card reveal" data-category="pc">
+        <div class="game-img-wrapper">
+            <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/66fcf1?text=Demon+Alive');"></div>
+        </div>
         <div class="game-content">
           <span class="tag">PC Game</span>
           <h3>Demon Alive</h3>
@@ -361,61 +453,66 @@
         </div>
       </div>
 
-      <!-- TIG TAG FLAG (MOBILE) -->
-      <div class="game-card" data-category="mobile">
-        <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/66fcf1?text=Tig+Tag+Flag');"></div>
+      <div class="game-card reveal" data-category="mobile">
+        <div class="game-img-wrapper">
+            <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/66fcf1?text=Tig+Tag+Flag');"></div>
+        </div>
         <div class="game-content">
           <span class="tag">Mobile Game</span>
           <h3>Tig Tag Flag</h3>
           <p>A fun and fast-paced mobile game. Grab the flag, outsmart your opponents, and claim victory!</p>
           <div class="game-links">
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.tigtagflag&hl=en-US" target="_blank" class="store-link">Google Play Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.peacygames.tigtagflag&hl=en-US" target="_blank" class="store-link">Google Play</a>
           </div>
         </div>
       </div>
 
-      <!-- UP BREAK (MOBILE) -->
-      <div class="game-card" data-category="mobile">
-        <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/66fcf1?text=Up+Break');"></div>
+      <div class="game-card reveal" data-category="mobile">
+        <div class="game-img-wrapper">
+            <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/66fcf1?text=Up+Break');"></div>
+        </div>
         <div class="game-content">
           <span class="tag">Mobile Game</span>
           <h3>Up Break</h3>
           <p>Break your way up in this highly addictive arcade experience. How high can you climb?</p>
           <div class="game-links">
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.upbreak&hl=en-US" target="_blank" class="store-link">Google Play Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.peacygames.upbreak&hl=en-US" target="_blank" class="store-link">Google Play</a>
           </div>
         </div>
       </div>
 
-      <!-- HEZARFEN (MOBILE) -->
-      <div class="game-card" data-category="mobile">
-        <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/66fcf1?text=Hezarfen');"></div>
+      <div class="game-card reveal" data-category="mobile">
+        <div class="game-img-wrapper">
+            <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/66fcf1?text=Hezarfen');"></div>
+        </div>
         <div class="game-content">
           <span class="tag">Mobile Game</span>
           <h3>Hezarfen</h3>
           <p>Take to the skies! Soar through the air and master the art of flying in this unique adventure.</p>
           <div class="game-links">
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.hezarfen&hl=en-US" target="_blank" class="store-link">Google Play Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.peacygames.hezarfen&hl=en-US" target="_blank" class="store-link">Google Play</a>
           </div>
         </div>
       </div>
 
-      <!-- MAHJONG SIGHTS (MOBILE - COMING SOON) -->
-      <div class="game-card" data-category="mobile">
-        <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/45a29e?text=Mahjong+Sights');"></div>
+      <div class="game-card reveal" data-category="mobile">
+        <div class="game-img-wrapper">
+            <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/45a29e?text=Mahjong+Sights');"></div>
+        </div>
         <div class="game-content">
           <span class="tag">Coming Soon / Mobile</span>
           <h3>Mahjong Sights</h3>
           <p>Relax and challenge your brain with classic Mahjong puzzles in beautiful, immersive settings.</p>
           <div class="game-links">
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.mahjongsights&hl=en-US" target="_blank" class="store-link">Google Play Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.peacygames.mahjongsights&hl=en-US" target="_blank" class="store-link">Google Play</a>
           </div>
         </div>
       </div>
 
-      <!-- UPCOMING VR/CONSOLE (PLACEHOLDER) -->
-      <div class="game-card" data-category="vr console">
-        <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/45a29e?text=Secret+Project');"></div>
+      <div class="game-card reveal" data-category="vr console">
+        <div class="game-img-wrapper">
+            <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/45a29e?text=Secret+Project');"></div>
+        </div>
         <div class="game-content">
           <span class="tag">In Development</span>
           <h3>Unannounced Project</h3>
@@ -425,34 +522,174 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- Footer -->
+  <section id="minigame" class="minigame-section reveal">
+    <h2 class="section-title">Take a Break: Neon Defender</h2>
+    <canvas id="gameCanvas" width="600" height="300"></canvas>
+    <p class="game-instructions">Hover over the canvas to aim. Click to shoot the falling neon blocks!</p>
+  </section>
+
   <footer>
     <p>&copy; 2026 Peacy Games. All rights reserved.</p>
   </footer>
 
-  <!-- JavaScript for Category Filtering -->
   <script>
+    // --- 1. GAME CATEGORY FILTER ---
     function filterGames(category) {
-      // Update active button styling
       const buttons = document.querySelectorAll('.filter-btn');
       buttons.forEach(btn => btn.classList.remove('active'));
       event.target.classList.add('active');
 
-      // Filter the game cards
       const cards = document.querySelectorAll('.game-card');
       cards.forEach(card => {
         const categories = card.getAttribute('data-category').split(' ');
         if (category === 'all' || categories.includes(category)) {
           card.style.display = 'flex';
+          // Re-trigger animation
+          card.style.animation = 'none';
+          card.offsetHeight; /* trigger reflow */
+          card.style.animation = null; 
         } else {
           card.style.display = 'none';
         }
       });
     }
+
+    // --- 2. SCROLL REVEAL ANIMATION ---
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+
+    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      });
+    }, revealOptions);
+
+    revealElements.forEach(el => revealOnScroll.observe(el));
+
+    // --- 3. COOL EFFECTS (CLICK & KEYBOARD) ---
+    // Klick Explosion
+    document.addEventListener('click', (e) => {
+      // Verhindere Effekt im Minigame-Canvas, da man dort klickt um zu schießen
+      if(e.target.id === 'gameCanvas') return; 
+
+      const drop = document.createElement('div');
+      drop.classList.add('click-particle');
+      drop.style.left = e.pageX + 'px';
+      drop.style.top = e.pageY + 'px';
+      document.body.appendChild(drop);
+      setTimeout(() => drop.remove(), 600);
+    });
+
+    // Tastatur Effekt (Fliegende Neon-Buchstaben)
+    document.addEventListener('keydown', (e) => {
+      // Ignoriere bestimmte Tasten
+      if (['Shift', 'Control', 'Alt', 'Meta', 'CapsLock', 'Tab'].includes(e.key)) return;
+
+      const keyDrop = document.createElement('div');
+      keyDrop.classList.add('key-particle');
+      keyDrop.innerText = e.key.toUpperCase();
+      
+      // Zufällige Position am unteren Bildschirmrand
+      const randomX = Math.random() * 80 + 10; // Zwischen 10% und 90%
+      keyDrop.style.left = randomX + 'vw';
+      
+      document.body.appendChild(keyDrop);
+      setTimeout(() => keyDrop.remove(), 1000);
+    });
+
+    // --- 4. NEON DEFENDER MINIGAME ---
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    let playerX = canvas.width / 2;
+    let bullets = [];
+    let enemies = [];
+    let score = 0;
+    let gameActive = true;
+
+    // Maussteuerung
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      playerX = e.clientX - rect.left;
+    });
+
+    // Schießen
+    canvas.addEventListener('mousedown', () => {
+      bullets.push({ x: playerX, y: canvas.height - 20, speed: 7 });
+    });
+
+    // Gegner Spawnen
+    setInterval(() => {
+      if(gameActive && document.hasFocus()) {
+        const x = Math.random() * (canvas.width - 20) + 10;
+        enemies.push({ x: x, y: 0, speed: Math.random() * 1.5 + 0.5 });
+      }
+    }, 1000);
+
+    function gameLoop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Zeichne Spieler (Kleine Neon Kanone)
+      ctx.fillStyle = '#66fcf1';
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = '#66fcf1';
+      ctx.fillRect(playerX - 15, canvas.height - 20, 30, 20);
+      ctx.fillRect(playerX - 5, canvas.height - 30, 10, 10);
+
+      // Update & Zeichne Projektile
+      for (let i = bullets.length - 1; i >= 0; i--) {
+        let b = bullets[i];
+        b.y -= b.speed;
+        ctx.fillStyle = '#ffffff';
+        ctx.shadowColor = '#ffffff';
+        ctx.fillRect(b.x - 2, b.y, 4, 10);
+        
+        // Entfernen wenn außerhalb des Bildschirms
+        if (b.y < 0) bullets.splice(i, 1);
+      }
+
+      // Update & Zeichne Gegner
+      for (let i = enemies.length - 1; i >= 0; i--) {
+        let e = enemies[i];
+        e.y += e.speed;
+        ctx.fillStyle = '#ff0055';
+        ctx.shadowColor = '#ff0055';
+        ctx.fillRect(e.x - 10, e.y, 20, 20);
+
+        // Kollision mit Projektilen prüfen
+        for (let j = bullets.length - 1; j >= 0; j--) {
+          let b = bullets[j];
+          if (b.x > e.x - 10 && b.x < e.x + 10 && b.y < e.y + 20 && b.y > e.y) {
+            enemies.splice(i, 1);
+            bullets.splice(j, 1);
+            score += 10;
+            break;
+          }
+        }
+
+        // Check if enemy hits bottom
+        if (e && e.y > canvas.height) {
+          enemies.splice(i, 1);
+          score = Math.max(0, score - 5); // Punktabzug
+        }
+      }
+
+      // Zeichne Score
+      ctx.fillStyle = '#c5c6c7';
+      ctx.shadowBlur = 0;
+      ctx.font = '16px Arial';
+      ctx.fillText('Score: ' + score, 10, 20);
+
+      requestAnimationFrame(gameLoop);
+    }
+
+    // Spiel starten
+    gameLoop();
   </script>
 </body>
 </html>
