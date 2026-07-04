@@ -26,7 +26,7 @@
       color: var(--text-main);
       line-height: 1.6;
       overflow-x: hidden;
-      scroll-behavior: smooth; /* Sanftes Scrollen */
+      scroll-behavior: smooth;
     }
 
     /* --- NAVIGATION --- */
@@ -36,14 +36,13 @@
       align-items: center;
       padding: 20px 5%;
       background: rgba(11, 12, 16, 0.90);
-      backdrop-filter: blur(10px); /* Moderner Glas-Effekt */
+      backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
       z-index: 1000;
       border-bottom: 1px solid rgba(69, 162, 158, 0.3);
     }
 
-    /* Dein neues Logo */
     .logo-img {
       height: 45px;
       width: auto;
@@ -56,6 +55,11 @@
       filter: drop-shadow(0 0 8px var(--accent-cyan));
     }
 
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
     .nav-links a {
       color: var(--text-main);
       text-decoration: none;
@@ -65,9 +69,16 @@
       position: relative;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover, .nav-links a.active {
       color: var(--accent-cyan);
       text-shadow: 0 0 8px var(--accent-cyan);
+    }
+
+    .shop-link {
+      color: var(--accent-cyan) !important;
+      border: 1px solid var(--accent-cyan);
+      padding: 5px 15px;
+      border-radius: 20px;
     }
 
     /* --- HERO SECTION --- */
@@ -127,9 +138,7 @@
     }
 
     /* --- SECTIONS COMMON --- */
-    section {
-      padding: 80px 8%;
-    }
+    section { padding: 80px 8%; }
 
     .section-title {
       text-align: center;
@@ -150,7 +159,6 @@
       box-shadow: 0 0 8px var(--accent-cyan);
     }
 
-    /* --- SCROLL REVEAL CLASSES --- */
     .reveal {
       opacity: 0;
       transform: translateY(40px);
@@ -174,7 +182,7 @@
       text-align: center;
       border-radius: 12px;
       border: 1px solid rgba(102, 252, 241, 0.1);
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
+      transition: transform 0.4s ease, border-color 0.3s, box-shadow 0.3s;
     }
 
     .platform-card:hover {
@@ -241,12 +249,6 @@
     .game-img {
       width: 100%;
       height: 200px;
-      background-color: #2c3540;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #718096;
-      font-weight: bold;
       background-size: cover;
       background-position: center;
       transition: transform 0.5s ease;
@@ -259,6 +261,7 @@
     .game-img-wrapper {
       overflow: hidden;
       height: 200px;
+      position: relative;
     }
 
     .game-content {
@@ -266,7 +269,7 @@
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-      background: var(--bg-card); /* Deckt das skalierte Bild ab */
+      background: var(--bg-card);
       position: relative;
       z-index: 2;
     }
@@ -295,28 +298,19 @@
       flex-grow: 1;
     }
 
-    .game-links {
-      display: flex;
-      gap: 10px;
+    .store-badge-link {
+      display: inline-block;
+      transition: transform 0.3s;
     }
 
-    .store-link {
-      flex: 1;
-      text-align: center;
-      padding: 10px;
-      background: var(--accent-dark);
-      color: var(--text-white);
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: bold;
-      font-size: 0.9rem;
-      transition: background 0.3s, box-shadow 0.3s;
+    .store-badge-link img {
+      height: 40px;
+      border-radius: 5px;
     }
 
-    .store-link:hover {
-      background: var(--accent-cyan);
-      color: var(--bg-main);
-      box-shadow: 0 0 10px var(--accent-cyan);
+    .store-badge-link:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 8px var(--accent-cyan));
     }
 
     /* --- MINIGAME SECTION --- */
@@ -351,7 +345,7 @@
       padding: 40px 20px;
     }
 
-    /* --- DYNAMISCHE EFFEKTE (KLICK & TASTATUR) --- */
+    /* --- EFFECTS --- */
     .click-particle {
       position: absolute;
       border-radius: 50%;
@@ -361,7 +355,6 @@
       animation: explode 0.6s ease-out forwards;
       z-index: 9999;
     }
-
     .key-particle {
       position: fixed;
       bottom: 20px;
@@ -373,12 +366,10 @@
       animation: floatUp 1s ease-out forwards;
       z-index: 9999;
     }
-
     @keyframes explode {
       0% { width: 0; height: 0; opacity: 1; box-shadow: 0 0 20px var(--accent-cyan); }
       100% { width: 50px; height: 50px; opacity: 0; box-shadow: 0 0 50px transparent; }
     }
-
     @keyframes floatUp {
       0% { transform: translateY(0) scale(1); opacity: 1; }
       100% { transform: translateY(-100px) scale(2); opacity: 0; }
@@ -389,13 +380,15 @@
 
   <nav>
     <a href="#hero">
-      <img src="logo.png" alt="Peacy Games" class="logo-img">
+      <!-- Platzhalter Text als Logo falls kein Bild da ist -->
+      <h2 style="color: var(--accent-cyan); margin: 0; text-shadow: 0 0 10px var(--accent-cyan);">PeacyGames</h2>
     </a>
     <div class="nav-links">
       <a href="#hero">Home</a>
       <a href="#platforms">Platforms</a>
       <a href="#games">Our Games</a>
       <a href="#minigame">Play!</a>
+      <a href="ebooks.html" class="shop-link">📚 Ebook Shop</a>
     </div>
   </nav>
 
@@ -434,91 +427,89 @@
       <button class="filter-btn active" onclick="filterGames('all')">All</button>
       <button class="filter-btn" onclick="filterGames('pc')">PC</button>
       <button class="filter-btn" onclick="filterGames('mobile')">Mobile</button>
-      <button class="filter-btn" onclick="filterGames('vr')">VR</button>
-      <button class="filter-btn" onclick="filterGames('console')">Console</button>
+      <button class="filter-btn" onclick="filterGames('vr')">VR / Console</button>
     </div>
 
     <div class="games-grid">
+      <!-- PC GAME -->
       <div class="game-card reveal" data-category="pc">
         <div class="game-img-wrapper">
-            <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/66fcf1?text=Demon+Alive');"></div>
+            <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
         </div>
         <div class="game-content">
           <span class="tag">PC Game</span>
           <h3>Demon Alive</h3>
           <p>Face the darkness in this thrilling PC experience. Survive, fight, and conquer your inner demons.</p>
           <div class="game-links">
-            <a href="https://store.steampowered.com/app/3339100/Demon_Alive/" target="_blank" class="store-link">Get it on Steam</a>
+            <a href="#" target="_blank" class="store-badge-link">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Available_on_Steam_logo.svg/300px-Available_on_Steam_logo.svg.png" alt="Available on Steam">
+            </a>
           </div>
         </div>
       </div>
 
+      <!-- MOBILE GAME 1 -->
       <div class="game-card reveal" data-category="mobile">
         <div class="game-img-wrapper">
-            <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/66fcf1?text=Tig+Tag+Flag');"></div>
+            <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
         </div>
         <div class="game-content">
           <span class="tag">Mobile Game</span>
           <h3>Tig Tag Flag</h3>
           <p>A fun and fast-paced mobile game. Grab the flag, outsmart your opponents, and claim victory!</p>
           <div class="game-links">
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.tigtagflag&hl=en-US" target="_blank" class="store-link">Google Play</a>
+            <a href="#" target="_blank" class="store-badge-link">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/300px-Google_Play_Store_badge_EN.svg.png" alt="Get it on Google Play">
+            </a>
           </div>
         </div>
       </div>
 
+      <!-- MOBILE GAME 2 -->
       <div class="game-card reveal" data-category="mobile">
         <div class="game-img-wrapper">
-            <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/66fcf1?text=Up+Break');"></div>
+            <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
         </div>
         <div class="game-content">
           <span class="tag">Mobile Game</span>
           <h3>Up Break</h3>
           <p>Break your way up in this highly addictive arcade experience. How high can you climb?</p>
           <div class="game-links">
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.upbreak&hl=en-US" target="_blank" class="store-link">Google Play</a>
+            <a href="#" target="_blank" class="store-badge-link">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/300px-Google_Play_Store_badge_EN.svg.png" alt="Get it on Google Play">
+            </a>
           </div>
         </div>
       </div>
 
+      <!-- MOBILE GAME 3 -->
       <div class="game-card reveal" data-category="mobile">
         <div class="game-img-wrapper">
-            <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/66fcf1?text=Hezarfen');"></div>
+            <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
         </div>
         <div class="game-content">
           <span class="tag">Mobile Game</span>
           <h3>Hezarfen</h3>
           <p>Take to the skies! Soar through the air and master the art of flying in this unique adventure.</p>
           <div class="game-links">
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.hezarfen&hl=en-US" target="_blank" class="store-link">Google Play</a>
+            <a href="#" target="_blank" class="store-badge-link">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/300px-Google_Play_Store_badge_EN.svg.png" alt="Get it on Google Play">
+            </a>
           </div>
         </div>
       </div>
 
-      <div class="game-card reveal" data-category="mobile">
-        <div class="game-img-wrapper">
-            <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/45a29e?text=Mahjong+Sights');"></div>
-        </div>
-        <div class="game-content">
-          <span class="tag">Coming Soon / Mobile</span>
-          <h3>Mahjong Sights</h3>
-          <p>Relax and challenge your brain with classic Mahjong puzzles in beautiful, immersive settings.</p>
-          <div class="game-links">
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.mahjongsights&hl=en-US" target="_blank" class="store-link">Google Play</a>
-          </div>
-        </div>
-      </div>
-
+      <!-- COMING SOON -->
       <div class="game-card reveal" data-category="vr console">
         <div class="game-img-wrapper">
-            <div class="game-img" style="background-image: url('https://via.placeholder.com/400x200/1f2833/45a29e?text=Secret+Project');"></div>
+            <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
         </div>
         <div class="game-content">
           <span class="tag">In Development</span>
-          <h3>Unannounced Project</h3>
+          <h3>Unannounced VR Project</h3>
           <p>We are currently working on top-secret immersive experiences for VR and Next-Gen Consoles.</p>
           <div class="game-links">
-            <a href="#" class="store-link" style="background: #2c3540; cursor: not-allowed;">Coming Soon</a>
+            <span style="color: #718096; font-weight: bold; padding: 10px 0;">Coming 2027</span>
           </div>
         </div>
       </div>
@@ -547,9 +538,8 @@
         const categories = card.getAttribute('data-category').split(' ');
         if (category === 'all' || categories.includes(category)) {
           card.style.display = 'flex';
-          // Re-trigger animation
           card.style.animation = 'none';
-          card.offsetHeight; /* trigger reflow */
+          card.offsetHeight; 
           card.style.animation = null; 
         } else {
           card.style.display = 'none';
@@ -571,11 +561,9 @@
 
     revealElements.forEach(el => revealOnScroll.observe(el));
 
-    // --- 3. COOL EFFECTS (CLICK & KEYBOARD) ---
-    // Klick Explosion
+    // --- 3. COOL EFFECTS ---
     document.addEventListener('click', (e) => {
-      // Verhindere Effekt im Minigame-Canvas, da man dort klickt um zu schießen
-      if(e.target.id === 'gameCanvas') return; 
+      if(e.target.id === 'gameCanvas' || e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a')) return; 
 
       const drop = document.createElement('div');
       drop.classList.add('click-particle');
@@ -585,17 +573,14 @@
       setTimeout(() => drop.remove(), 600);
     });
 
-    // Tastatur Effekt (Fliegende Neon-Buchstaben)
     document.addEventListener('keydown', (e) => {
-      // Ignoriere bestimmte Tasten
       if (['Shift', 'Control', 'Alt', 'Meta', 'CapsLock', 'Tab'].includes(e.key)) return;
 
       const keyDrop = document.createElement('div');
       keyDrop.classList.add('key-particle');
       keyDrop.innerText = e.key.toUpperCase();
       
-      // Zufällige Position am unteren Bildschirmrand
-      const randomX = Math.random() * 80 + 10; // Zwischen 10% und 90%
+      const randomX = Math.random() * 80 + 10;
       keyDrop.style.left = randomX + 'vw';
       
       document.body.appendChild(keyDrop);
@@ -612,18 +597,15 @@
     let score = 0;
     let gameActive = true;
 
-    // Maussteuerung
     canvas.addEventListener('mousemove', (e) => {
       const rect = canvas.getBoundingClientRect();
       playerX = e.clientX - rect.left;
     });
 
-    // Schießen
     canvas.addEventListener('mousedown', () => {
       bullets.push({ x: playerX, y: canvas.height - 20, speed: 7 });
     });
 
-    // Gegner Spawnen
     setInterval(() => {
       if(gameActive && document.hasFocus()) {
         const x = Math.random() * (canvas.width - 20) + 10;
@@ -634,26 +616,24 @@
     function gameLoop() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Zeichne Spieler (Kleine Neon Kanone)
+      // Player
       ctx.fillStyle = '#66fcf1';
       ctx.shadowBlur = 10;
       ctx.shadowColor = '#66fcf1';
       ctx.fillRect(playerX - 15, canvas.height - 20, 30, 20);
       ctx.fillRect(playerX - 5, canvas.height - 30, 10, 10);
 
-      // Update & Zeichne Projektile
+      // Bullets
       for (let i = bullets.length - 1; i >= 0; i--) {
         let b = bullets[i];
         b.y -= b.speed;
         ctx.fillStyle = '#ffffff';
         ctx.shadowColor = '#ffffff';
         ctx.fillRect(b.x - 2, b.y, 4, 10);
-        
-        // Entfernen wenn außerhalb des Bildschirms
         if (b.y < 0) bullets.splice(i, 1);
       }
 
-      // Update & Zeichne Gegner
+      // Enemies
       for (let i = enemies.length - 1; i >= 0; i--) {
         let e = enemies[i];
         e.y += e.speed;
@@ -661,7 +641,6 @@
         ctx.shadowColor = '#ff0055';
         ctx.fillRect(e.x - 10, e.y, 20, 20);
 
-        // Kollision mit Projektilen prüfen
         for (let j = bullets.length - 1; j >= 0; j--) {
           let b = bullets[j];
           if (b.x > e.x - 10 && b.x < e.x + 10 && b.y < e.y + 20 && b.y > e.y) {
@@ -672,14 +651,12 @@
           }
         }
 
-        // Check if enemy hits bottom
         if (e && e.y > canvas.height) {
           enemies.splice(i, 1);
-          score = Math.max(0, score - 5); // Punktabzug
+          score = Math.max(0, score - 5);
         }
       }
 
-      // Zeichne Score
       ctx.fillStyle = '#c5c6c7';
       ctx.shadowBlur = 0;
       ctx.font = '16px Arial';
@@ -688,7 +665,6 @@
       requestAnimationFrame(gameLoop);
     }
 
-    // Spiel starten
     gameLoop();
   </script>
 </body>
