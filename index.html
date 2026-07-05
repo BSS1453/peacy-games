@@ -21,6 +21,12 @@
       font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
 
+    /* --- CUSTOM SCROLLBAR --- */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg-main); }
+    ::-webkit-scrollbar-thumb { background: var(--accent-dark); border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+
     body {
       background-color: var(--bg-main);
       color: var(--text-main);
@@ -34,25 +40,39 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 5%;
-      background: rgba(11, 12, 16, 0.90);
-      backdrop-filter: blur(10px);
+      padding: 15px 5%;
+      background: rgba(11, 12, 16, 0.7);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
       position: sticky;
       top: 0;
       z-index: 1000;
-      border-bottom: 1px solid rgba(69, 162, 158, 0.3);
+      border-bottom: 1px solid rgba(69, 162, 158, 0.2);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
     }
 
     .logo-img {
-      height: 45px;
+      height: 50px; /* Anpassen je nach Logo-Proportion */
       width: auto;
-      transition: transform 0.3s ease, filter 0.3s ease;
-      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
+      filter: drop-shadow(0 0 5px rgba(102, 252, 241, 0.5));
+      animation: pulseLogo 3s infinite alternate;
+    }
+
+    @keyframes pulseLogo {
+      0% { filter: drop-shadow(0 0 5px rgba(102, 252, 241, 0.4)); }
+      100% { filter: drop-shadow(0 0 15px rgba(102, 252, 241, 0.8)); transform: scale(1.02); }
     }
 
     .logo-img:hover {
-      transform: scale(1.05);
-      filter: drop-shadow(0 0 8px var(--accent-cyan));
+      transform: scale(1.1) rotate(-3deg);
+      filter: drop-shadow(0 0 20px var(--accent-cyan));
     }
 
     .nav-links {
@@ -63,106 +83,162 @@
     .nav-links a {
       color: var(--text-main);
       text-decoration: none;
-      margin-left: 25px;
+      margin-left: 30px;
       font-weight: 600;
-      transition: color 0.3s, text-shadow 0.3s;
+      transition: all 0.3s;
       position: relative;
     }
 
+    /* Coole Hover-Linie für Nav-Links */
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--accent-cyan);
+      transition: width 0.3s ease;
+      box-shadow: 0 0 8px var(--accent-cyan);
+    }
+
+    .nav-links a:hover::after { width: 100%; }
     .nav-links a:hover, .nav-links a.active {
       color: var(--accent-cyan);
-      text-shadow: 0 0 8px var(--accent-cyan);
+      text-shadow: 0 0 8px rgba(102, 252, 241, 0.5);
     }
 
     .shop-link {
       color: var(--accent-cyan) !important;
       border: 1px solid var(--accent-cyan);
-      padding: 5px 15px;
-      border-radius: 20px;
+      padding: 8px 20px;
+      border-radius: 25px;
+      box-shadow: 0 0 10px rgba(102, 252, 241, 0.1);
+    }
+    .shop-link::after { display: none; }
+    .shop-link:hover {
+      background: var(--accent-cyan);
+      color: var(--bg-main) !important;
+      box-shadow: 0 0 20px var(--accent-cyan);
     }
 
-    /* --- HERO SECTION --- */
+    /* --- HERO SECTION (Animated Gradient Background) --- */
     .hero {
-      min-height: 80vh;
+      min-height: 85vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       padding: 0 20px;
-      background: radial-gradient(circle at center, #1f2833 0%, #0b0c10 70%);
       position: relative;
+      background: linear-gradient(-45deg, #0b0c10, #171d26, #0f1821, #0b0c10);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      overflow: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero-content {
+      z-index: 2;
+      animation: floatHero 6s ease-in-out infinite;
+    }
+
+    @keyframes floatHero {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
     }
 
     .hero h1 {
-      font-size: 3.5rem;
+      font-size: 4.5rem;
       color: var(--text-white);
       margin-bottom: 15px;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
     }
 
     .hero h1 span {
       color: var(--accent-cyan);
-      text-shadow: 0 0 15px var(--accent-cyan);
+      text-shadow: 0 0 20px var(--accent-cyan);
     }
 
     .hero p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin-bottom: 30px;
+      font-size: 1.3rem;
+      max-width: 650px;
+      margin: 0 auto 40px auto;
+      color: #e0e0e0;
     }
 
     .btn {
       display: inline-block;
-      padding: 12px 30px;
+      padding: 15px 40px;
       background: transparent;
       color: var(--accent-cyan);
       border: 2px solid var(--accent-cyan);
-      border-radius: 4px;
+      border-radius: 50px;
       font-weight: bold;
+      font-size: 1.1rem;
       text-decoration: none;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
+      letter-spacing: 2px;
+      transition: all 0.4s ease;
       cursor: pointer;
       position: relative;
       overflow: hidden;
+      z-index: 1;
     }
 
-    .btn:hover {
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 0%; height: 100%;
       background: var(--accent-cyan);
+      transition: all 0.4s ease;
+      z-index: -1;
+    }
+
+    .btn:hover::before { width: 100%; }
+    .btn:hover {
       color: var(--bg-main);
-      box-shadow: 0 0 20px var(--accent-cyan);
-      transform: translateY(-2px);
+      box-shadow: 0 0 25px var(--accent-cyan);
+      transform: translateY(-3px);
     }
 
     /* --- SECTIONS COMMON --- */
-    section { padding: 80px 8%; }
+    section { padding: 100px 8%; position: relative; }
 
     .section-title {
       text-align: center;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       color: var(--text-white);
-      margin-bottom: 50px;
+      margin-bottom: 60px;
       position: relative;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
     .section-title::after {
       content: '';
       display: block;
-      width: 60px;
+      width: 80px;
       height: 4px;
       background: var(--accent-cyan);
-      margin: 10px auto 0;
+      margin: 15px auto 0;
       border-radius: 2px;
-      box-shadow: 0 0 8px var(--accent-cyan);
+      box-shadow: 0 0 10px var(--accent-cyan);
     }
 
+    /* Scroll Reveal */
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      transform: translateY(50px);
+      transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1);
     }
     .reveal.active {
       opacity: 1;
@@ -172,29 +248,45 @@
     /* --- PLATFORMS --- */
     .platforms-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 30px;
     }
 
     .platform-card {
-      background: var(--bg-card);
-      padding: 40px 20px;
+      background: rgba(31, 40, 51, 0.6);
+      backdrop-filter: blur(5px);
+      padding: 50px 30px;
       text-align: center;
-      border-radius: 12px;
-      border: 1px solid rgba(102, 252, 241, 0.1);
-      transition: transform 0.4s ease, border-color 0.3s, box-shadow 0.3s;
+      border-radius: 15px;
+      border: 1px solid rgba(102, 252, 241, 0.05);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
     }
 
+    .platform-card::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(102,252,241,0.1) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+    }
+
+    .platform-card:hover::before { opacity: 1; }
     .platform-card:hover {
-      transform: translateY(-15px) scale(1.03);
-      border-color: var(--accent-cyan);
-      box-shadow: 0 10px 25px rgba(102, 252, 241, 0.15);
+      transform: translateY(-15px);
+      border-color: rgba(102, 252, 241, 0.5);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(102, 252, 241, 0.15);
     }
 
     .platform-card h3 {
       color: var(--text-white);
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       margin-bottom: 15px;
+      position: relative;
     }
 
     /* --- SHOWCASE / GAMES --- */
@@ -203,17 +295,18 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 15px;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
 
     .filter-btn {
-      background: var(--bg-card);
+      background: rgba(31, 40, 51, 0.8);
       color: var(--text-main);
-      border: 1px solid var(--accent-dark);
-      padding: 8px 25px;
-      border-radius: 25px;
+      border: 1px solid rgba(102, 252, 241, 0.3);
+      padding: 10px 30px;
+      border-radius: 30px;
       cursor: pointer;
       font-weight: 600;
+      font-size: 1rem;
       transition: all 0.3s;
     }
 
@@ -221,167 +314,238 @@
       background: var(--accent-cyan);
       color: var(--bg-main);
       border-color: var(--accent-cyan);
-      box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
+      box-shadow: 0 0 20px rgba(102, 252, 241, 0.5);
+      transform: translateY(-2px);
     }
 
     .games-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
     }
 
     .game-card {
       background: var(--bg-card);
-      border-radius: 12px;
+      border-radius: 15px;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.02);
       transition: all 0.4s ease;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
     .game-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(102, 252, 241, 0.2);
-      border-color: rgba(102, 252, 241, 0.5);
-    }
-
-    .game-img {
-      width: 100%;
-      height: 200px;
-      background-size: cover;
-      background-position: center;
-      transition: transform 0.5s ease;
-    }
-
-    .game-card:hover .game-img {
-      transform: scale(1.05);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(102, 252, 241, 0.2);
+      border-color: rgba(102, 252, 241, 0.4);
     }
 
     .game-img-wrapper {
       overflow: hidden;
-      height: 200px;
+      height: 220px;
       position: relative;
     }
 
+    .game-img {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .game-card:hover .game-img { transform: scale(1.1); }
+
     .game-content {
-      padding: 25px;
+      padding: 30px;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-      background: var(--bg-card);
+      background: linear-gradient(to top, var(--bg-card) 80%, transparent);
       position: relative;
       z-index: 2;
     }
 
     .tag {
       align-self: flex-start;
-      background: rgba(102, 252, 241, 0.15);
+      background: rgba(102, 252, 241, 0.1);
+      border: 1px solid rgba(102, 252, 241, 0.3);
       color: var(--accent-cyan);
-      padding: 4px 10px;
-      border-radius: 4px;
+      padding: 5px 12px;
+      border-radius: 20px;
       font-size: 0.8rem;
       font-weight: bold;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .game-content h3 {
       color: var(--text-white);
-      font-size: 1.4rem;
-      margin-bottom: 10px;
+      font-size: 1.6rem;
+      margin-bottom: 15px;
     }
 
     .game-content p {
-      font-size: 0.95rem;
-      margin-bottom: 20px;
+      font-size: 1rem;
+      margin-bottom: 25px;
       flex-grow: 1;
+      color: #a0a5aa;
     }
 
-    .store-badge-link {
-      display: inline-block;
-      transition: transform 0.3s;
+    /* --- NEW STORE BUTTONS (NO IMAGE ERRORS) --- */
+    .game-links {
+      display: flex;
+      gap: 15px;
     }
 
-    .store-badge-link img {
-      height: 40px;
-      border-radius: 5px;
+    .store-badge {
+      display: inline-flex;
+      align-items: center;
+      background: #000;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+      gap: 12px;
     }
 
-    .store-badge-link:hover {
-      transform: scale(1.05);
-      filter: drop-shadow(0 0 8px var(--accent-cyan));
+    .store-badge img {
+      height: 24px;
+      width: auto;
+      filter: brightness(0.9);
+      transition: filter 0.3s;
     }
+
+    .store-badge div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.1;
+    }
+
+    .store-badge div span {
+      font-size: 0.65rem;
+      color: #ccc;
+      text-transform: uppercase;
+    }
+
+    .store-badge div strong {
+      font-size: 1.1rem;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    /* Steam Button Hover Effect */
+    .steam-btn:hover {
+      background: #171a21;
+      border-color: #66c0f4;
+      box-shadow: 0 5px 15px rgba(102, 192, 244, 0.3);
+      transform: translateY(-3px);
+    }
+    .steam-btn:hover img { filter: brightness(1); }
+    .steam-btn:hover div strong { color: #66c0f4; }
+
+    /* Google Play Button Hover Effect */
+    .play-btn:hover {
+      background: #111;
+      border-color: #00ff00;
+      box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
+      transform: translateY(-3px);
+    }
+    .play-btn:hover img { filter: brightness(1); }
+    .play-btn:hover div strong { color: #00ff00; }
+
 
     /* --- MINIGAME SECTION --- */
     .minigame-section {
-      background: #0f1318;
-      border-top: 1px solid var(--accent-dark);
-      border-bottom: 1px solid var(--accent-dark);
+      background: radial-gradient(circle at center, #171d26 0%, #0b0c10 100%);
+      border-top: 1px solid rgba(102, 252, 241, 0.2);
+      border-bottom: 1px solid rgba(102, 252, 241, 0.2);
       text-align: center;
-      padding: 60px 20px;
+      padding: 80px 20px;
     }
     
     #gameCanvas {
-      background: #0b0c10;
-      border: 2px solid var(--accent-cyan);
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(102, 252, 241, 0.2);
+      background: #050608;
+      border: 2px solid rgba(102, 252, 241, 0.5);
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(102, 252, 241, 0.15), inset 0 0 20px rgba(0,0,0,0.8);
       cursor: crosshair;
       max-width: 100%;
       display: block;
       margin: 0 auto 20px auto;
+      transition: box-shadow 0.3s;
+    }
+
+    #gameCanvas:hover {
+      box-shadow: 0 0 40px rgba(102, 252, 241, 0.3), inset 0 0 20px rgba(0,0,0,0.8);
     }
 
     .game-instructions {
       color: var(--accent-cyan);
       font-weight: bold;
+      letter-spacing: 1px;
+      animation: pulseText 2s infinite;
+    }
+
+    @keyframes pulseText {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; text-shadow: 0 0 8px var(--accent-cyan); }
     }
 
     /* --- FOOTER --- */
     footer {
-      background: #07080a;
+      background: #050608;
       text-align: center;
       padding: 40px 20px;
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
 
-    /* --- EFFECTS --- */
+    /* --- EFFECTS (Particles) --- */
     .click-particle {
       position: absolute;
       border-radius: 50%;
-      background: var(--accent-cyan);
+      background: transparent;
+      border: 2px solid var(--accent-cyan);
       transform: translate(-50%, -50%);
       pointer-events: none;
-      animation: explode 0.6s ease-out forwards;
+      animation: explode 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
       z-index: 9999;
     }
     .key-particle {
       position: fixed;
       bottom: 20px;
-      color: var(--accent-cyan);
-      font-weight: bold;
-      font-size: 1.5rem;
+      color: var(--text-white);
+      font-weight: 900;
+      font-size: 2rem;
       pointer-events: none;
-      text-shadow: 0 0 10px var(--accent-cyan);
-      animation: floatUp 1s ease-out forwards;
+      text-shadow: 0 0 15px var(--accent-cyan), 0 0 30px var(--accent-cyan);
+      animation: floatUp 1.2s ease-out forwards;
       z-index: 9999;
     }
     @keyframes explode {
-      0% { width: 0; height: 0; opacity: 1; box-shadow: 0 0 20px var(--accent-cyan); }
-      100% { width: 50px; height: 50px; opacity: 0; box-shadow: 0 0 50px transparent; }
+      0% { width: 0; height: 0; opacity: 1; box-shadow: 0 0 20px var(--accent-cyan) inset; }
+      100% { width: 80px; height: 80px; opacity: 0; border-width: 0px; }
     }
     @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-100px) scale(2); opacity: 0; }
+      0% { transform: translateY(0) scale(0.5); opacity: 0; }
+      20% { transform: translateY(-20px) scale(1.2); opacity: 1; }
+      100% { transform: translateY(-150px) scale(2); opacity: 0; filter: blur(4px); }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="#hero">
-      <!-- Platzhalter Text als Logo falls kein Bild da ist -->
-      <h2 style="color: var(--accent-cyan); margin: 0; text-shadow: 0 0 10px var(--accent-cyan);">PeacyGames</h2>
+    <!-- LOGO MIT BILD: Fallback-Script falls logo.png noch nicht im Ordner liegt -->
+    <a href="#hero" class="logo-container">
+      <img src="logo.png" alt="Peacy Games Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <h2 style="display: none; color: var(--accent-cyan); margin: 0; text-shadow: 0 0 15px var(--accent-cyan); letter-spacing: 1px;">PEACY GAMES</h2>
     </a>
     <div class="nav-links">
       <a href="#hero">Home</a>
@@ -393,9 +557,11 @@
   </nav>
 
   <section class="hero" id="hero">
-    <h1 class="reveal">We Build <span>Worlds</span></h1>
-    <p class="reveal">Passionate game development for PC, Mobile, Virtual Reality, and Next-Gen Consoles.</p>
-    <a href="#games" class="btn reveal">Discover Games</a>
+    <div class="hero-content">
+      <h1 class="reveal">We Build <span>Worlds</span></h1>
+      <p class="reveal">Passionate game development for PC, Mobile, Virtual Reality, and Next-Gen Consoles. Experience the future of interactive entertainment.</p>
+      <a href="#games" class="btn reveal">Discover Games</a>
+    </div>
   </section>
 
   <section id="platforms">
@@ -403,19 +569,19 @@
     <div class="platforms-grid">
       <div class="platform-card reveal">
         <h3>PC Games</h3>
-        <p>High-resolution textures, deep mechanics, and thrilling gameplay built for Steam.</p>
+        <p>High-resolution textures, deep mechanics, and thrilling gameplay built natively for Steam and Epic.</p>
       </div>
       <div class="platform-card reveal">
         <h3>Mobile Games</h3>
-        <p>Addictive casual and action experiences, perfectly optimized for Android and iOS.</p>
+        <p>Addictive casual and action experiences, perfectly optimized for Android and iOS performance.</p>
       </div>
       <div class="platform-card reveal">
         <h3>VR Games</h3>
-        <p>Immersive virtual reality worlds that push the boundaries of perception.</p>
+        <p>Immersive virtual reality worlds that push the boundaries of perception and physical interaction.</p>
       </div>
       <div class="platform-card reveal">
         <h3>Console Games</h3>
-        <p>Experiences optimized for PlayStation, Xbox, and Nintendo Switch.</p>
+        <p>Experiences highly optimized for the performance of PlayStation, Xbox, and Nintendo Switch.</p>
       </div>
     </div>
   </section>
@@ -441,9 +607,13 @@
           <h3>Demon Alive</h3>
           <p>Face the darkness in this thrilling PC experience. Survive, fight, and conquer your inner demons.</p>
           <div class="game-links">
-            <!-- ECHTER STEAM LINK -->
-            <a href="https://store.steampowered.com/app/3339100/Demon_Alive/" target="_blank" class="store-badge-link">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Available_on_Steam_logo.svg/300px-Available_on_Steam_logo.svg.png" alt="Available on Steam">
+            <!-- ECHTER STEAM BUTTON MIT CSS/SVG (Keine Image Fehler mehr!) -->
+            <a href="https://store.steampowered.com/app/3339100/Demon_Alive/" target="_blank" class="store-badge steam-btn">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam Icon">
+              <div>
+                <span>Available on</span>
+                <strong>Steam</strong>
+              </div>
             </a>
           </div>
         </div>
@@ -459,9 +629,13 @@
           <h3>Tig Tag Flag</h3>
           <p>A fun and fast-paced mobile game. Grab the flag, outsmart your opponents, and claim victory!</p>
           <div class="game-links">
-            <!-- ECHTER GOOGLE PLAY LINK -->
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.tigtagflag&hl=en-US" target="_blank" class="store-badge-link">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/300px-Google_Play_Store_badge_EN.svg.png" alt="Get it on Google Play">
+            <!-- ECHTER GOOGLE PLAY BUTTON MIT CSS/SVG -->
+            <a href="https://play.google.com/store/apps/details?id=com.peacygames.tigtagflag&hl=en-US" target="_blank" class="store-badge play-btn">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Icon">
+              <div>
+                <span>GET IT ON</span>
+                <strong>Google Play</strong>
+              </div>
             </a>
           </div>
         </div>
@@ -477,9 +651,12 @@
           <h3>Up Break</h3>
           <p>Break your way up in this highly addictive arcade experience. How high can you climb?</p>
           <div class="game-links">
-             <!-- ECHTER GOOGLE PLAY LINK -->
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.upbreak&hl=en-US" target="_blank" class="store-badge-link">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/300px-Google_Play_Store_badge_EN.svg.png" alt="Get it on Google Play">
+            <a href="https://play.google.com/store/apps/details?id=com.peacygames.upbreak&hl=en-US" target="_blank" class="store-badge play-btn">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Icon">
+              <div>
+                <span>GET IT ON</span>
+                <strong>Google Play</strong>
+              </div>
             </a>
           </div>
         </div>
@@ -495,27 +672,33 @@
           <h3>Hezarfen</h3>
           <p>Take to the skies! Soar through the air and master the art of flying in this unique adventure.</p>
           <div class="game-links">
-             <!-- ECHTER GOOGLE PLAY LINK -->
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.hezarfen&hl=en-US" target="_blank" class="store-badge-link">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/300px-Google_Play_Store_badge_EN.svg.png" alt="Get it on Google Play">
+            <a href="https://play.google.com/store/apps/details?id=com.peacygames.hezarfen&hl=en-US" target="_blank" class="store-badge play-btn">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Icon">
+              <div>
+                <span>GET IT ON</span>
+                <strong>Google Play</strong>
+              </div>
             </a>
           </div>
         </div>
       </div>
 
-      <!-- MAHJONG SIGHTS (Wieder hinzugefügt) -->
+      <!-- MAHJONG SIGHTS -->
       <div class="game-card reveal" data-category="mobile">
         <div class="game-img-wrapper">
             <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1596423735880-5f2a689b903e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
         </div>
         <div class="game-content">
-          <span class="tag">Coming Soon / Mobile</span>
+          <span class="tag" style="background: rgba(255,200,0,0.1); color:#ffc107; border-color: #ffc107;">Coming Soon / Mobile</span>
           <h3>Mahjong Sights</h3>
           <p>Relax and challenge your brain with classic Mahjong puzzles in beautiful, immersive settings.</p>
           <div class="game-links">
-             <!-- ECHTER GOOGLE PLAY LINK -->
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.mahjongsights&hl=en-US" target="_blank" class="store-badge-link">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/300px-Google_Play_Store_badge_EN.svg.png" alt="Get it on Google Play">
+            <a href="https://play.google.com/store/apps/details?id=com.peacygames.mahjongsights&hl=en-US" target="_blank" class="store-badge play-btn">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Icon">
+              <div>
+                <span>PRE-REGISTER</span>
+                <strong>Google Play</strong>
+              </div>
             </a>
           </div>
         </div>
@@ -527,11 +710,11 @@
             <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
         </div>
         <div class="game-content">
-          <span class="tag">In Development</span>
+          <span class="tag" style="background: rgba(255,0,85,0.1); color:#ff0055; border-color: #ff0055;">In Development</span>
           <h3>Unannounced VR Project</h3>
           <p>We are currently working on top-secret immersive experiences for VR and Next-Gen Consoles.</p>
           <div class="game-links">
-            <span style="color: #718096; font-weight: bold; padding: 10px 0;">Coming 2027</span>
+            <span style="color: #66fcf1; font-weight: bold; padding: 10px 0; text-shadow: 0 0 10px rgba(102, 252, 241, 0.5); font-size: 1.2rem;">Coming 2027</span>
           </div>
         </div>
       </div>
@@ -562,12 +745,22 @@
           card.style.display = 'flex';
           card.style.animation = 'none';
           card.offsetHeight; 
-          card.style.animation = null; 
+          card.style.animation = 'fadeInUp 0.5s ease forwards'; 
         } else {
           card.style.display = 'none';
         }
       });
     }
+
+    // Animation Keyframes dynamisch hinzufügen für den Filter
+    const styleSheet = document.createElement("style");
+    styleSheet.innerText = `
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    `;
+    document.head.appendChild(styleSheet);
 
     // --- 2. SCROLL REVEAL ANIMATION ---
     const revealElements = document.querySelectorAll('.reveal');
@@ -585,7 +778,8 @@
 
     // --- 3. COOL EFFECTS ---
     document.addEventListener('click', (e) => {
-      if(e.target.id === 'gameCanvas' || e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a')) return; 
+      // Ignoriere Klicks auf UI Elemente
+      if(e.target.id === 'gameCanvas' || e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('.filter-btn')) return; 
 
       const drop = document.createElement('div');
       drop.classList.add('click-particle');
@@ -596,7 +790,7 @@
     });
 
     document.addEventListener('keydown', (e) => {
-      if (['Shift', 'Control', 'Alt', 'Meta', 'CapsLock', 'Tab'].includes(e.key)) return;
+      if (['Shift', 'Control', 'Alt', 'Meta', 'CapsLock', 'Tab', 'Enter', ' '].includes(e.key)) return;
 
       const keyDrop = document.createElement('div');
       keyDrop.classList.add('key-particle');
@@ -605,8 +799,14 @@
       const randomX = Math.random() * 80 + 10;
       keyDrop.style.left = randomX + 'vw';
       
+      // Zufällige Neon-Farben für die Buchstaben
+      const colors = ['#66fcf1', '#ff0055', '#00ff00', '#ffc107'];
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      keyDrop.style.color = randomColor;
+      keyDrop.style.textShadow = `0 0 15px ${randomColor}, 0 0 30px ${randomColor}`;
+
       document.body.appendChild(keyDrop);
-      setTimeout(() => keyDrop.remove(), 1000);
+      setTimeout(() => keyDrop.remove(), 1200);
     });
 
     // --- 4. NEON DEFENDER MINIGAME ---
@@ -618,40 +818,60 @@
     let enemies = [];
     let score = 0;
     let gameActive = true;
+    let particles = []; // Neue Partikel für Explosionen
 
     canvas.addEventListener('mousemove', (e) => {
       const rect = canvas.getBoundingClientRect();
-      playerX = e.clientX - rect.left;
+      // Skalierung berechnen (falls CSS-Größe von interner Canvas-Größe abweicht)
+      const scaleX = canvas.width / rect.width;
+      playerX = (e.clientX - rect.left) * scaleX;
     });
 
     canvas.addEventListener('mousedown', () => {
-      bullets.push({ x: playerX, y: canvas.height - 20, speed: 7 });
+      bullets.push({ x: playerX, y: canvas.height - 20, speed: 8 });
     });
 
     setInterval(() => {
       if(gameActive && document.hasFocus()) {
         const x = Math.random() * (canvas.width - 20) + 10;
-        enemies.push({ x: x, y: 0, speed: Math.random() * 1.5 + 0.5 });
+        enemies.push({ x: x, y: 0, speed: Math.random() * 1.5 + 0.8 });
       }
-    }, 1000);
+    }, 800);
+
+    function createExplosion(x, y) {
+      for(let i = 0; i < 8; i++) {
+        particles.push({
+          x: x, y: y,
+          vx: (Math.random() - 0.5) * 4,
+          vy: (Math.random() - 0.5) * 4,
+          life: 1.0
+        });
+      }
+    }
 
     function gameLoop() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Leichter Trails Effekt
+      ctx.fillStyle = 'rgba(5, 6, 8, 0.4)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Player
       ctx.fillStyle = '#66fcf1';
-      ctx.shadowBlur = 10;
+      ctx.shadowBlur = 15;
       ctx.shadowColor = '#66fcf1';
-      ctx.fillRect(playerX - 15, canvas.height - 20, 30, 20);
-      ctx.fillRect(playerX - 5, canvas.height - 30, 10, 10);
+      ctx.beginPath();
+      ctx.moveTo(playerX, canvas.height - 30);
+      ctx.lineTo(playerX - 15, canvas.height - 10);
+      ctx.lineTo(playerX + 15, canvas.height - 10);
+      ctx.fill();
 
       // Bullets
       for (let i = bullets.length - 1; i >= 0; i--) {
         let b = bullets[i];
         b.y -= b.speed;
-        ctx.fillStyle = '#ffffff';
-        ctx.shadowColor = '#ffffff';
-        ctx.fillRect(b.x - 2, b.y, 4, 10);
+        ctx.fillStyle = '#fff';
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#66fcf1';
+        ctx.fillRect(b.x - 2, b.y, 4, 12);
         if (b.y < 0) bullets.splice(i, 1);
       }
 
@@ -660,12 +880,15 @@
         let e = enemies[i];
         e.y += e.speed;
         ctx.fillStyle = '#ff0055';
+        ctx.shadowBlur = 15;
         ctx.shadowColor = '#ff0055';
         ctx.fillRect(e.x - 10, e.y, 20, 20);
 
+        // Kollision
         for (let j = bullets.length - 1; j >= 0; j--) {
           let b = bullets[j];
-          if (b.x > e.x - 10 && b.x < e.x + 10 && b.y < e.y + 20 && b.y > e.y) {
+          if (b.x > e.x - 12 && b.x < e.x + 12 && b.y < e.y + 20 && b.y > e.y) {
+            createExplosion(e.x, e.y);
             enemies.splice(i, 1);
             bullets.splice(j, 1);
             score += 10;
@@ -676,13 +899,32 @@
         if (e && e.y > canvas.height) {
           enemies.splice(i, 1);
           score = Math.max(0, score - 5);
+          
+          // Bildschirm-Wackeln Effekt (visuelles Feedback bei Schaden)
+          canvas.style.transform = `translate(${Math.random()*4-2}px, ${Math.random()*4-2}px)`;
+          setTimeout(()=> canvas.style.transform = 'translate(0,0)', 50);
         }
+      }
+
+      // Partikel rendern
+      for(let i = particles.length - 1; i >= 0; i--) {
+        let p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= 0.05;
+        ctx.fillStyle = `rgba(255, 0, 85, ${p.life})`;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#ff0055';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 3, 0, Math.PI*2);
+        ctx.fill();
+        if(p.life <= 0) particles.splice(i, 1);
       }
 
       ctx.fillStyle = '#c5c6c7';
       ctx.shadowBlur = 0;
-      ctx.font = '16px Arial';
-      ctx.fillText('Score: ' + score, 10, 20);
+      ctx.font = 'bold 18px Arial';
+      ctx.fillText('SCORE: ' + score, 15, 25);
 
       requestAnimationFrame(gameLoop);
     }
