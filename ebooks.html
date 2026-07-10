@@ -257,7 +257,38 @@
     .cart-footer { padding: 25px; border-top: 1px solid rgba(102, 252, 241, 0.2); background: #141a21; }
     .cart-total { display: flex; justify-content: space-between; font-size: 1.4rem; color: var(--text-white); margin-bottom: 20px; font-weight: bold; }
 
-    #paypal-button-container { margin-top: 15px; }
+    /* --- EMAIL EINGABEFELD --- */
+    .email-capture {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+      gap: 8px;
+    }
+    .email-capture label {
+      color: var(--text-main);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    .email-capture input {
+      padding: 12px 15px;
+      border-radius: 8px;
+      background: #0b0c10;
+      border: 1px solid rgba(102, 252, 241, 0.3);
+      color: var(--text-white);
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    .email-capture input:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 10px rgba(102, 252, 241, 0.2);
+    }
+    .email-capture input::placeholder {
+      color: #555;
+    }
+
+    #paypal-button-container { margin-top: 5px; }
 
     /* Processing Overlay */
     .processing-overlay {
@@ -322,6 +353,12 @@
         <span id="cartTotalValue">$0.00</span>
       </div>
 
+      <!-- E-MAIL FELD HINZUGEFÜGT -->
+      <div class="email-capture">
+        <label for="buyerEmail">Email for Delivery</label>
+        <input type="email" id="buyerEmail" placeholder="you@example.com" required>
+      </div>
+
       <div id="paypal-button-container"></div>
       
     </div>
@@ -354,7 +391,7 @@
       }
     ];
 
-    let cart = []; // Speichert die Indexe der gekauften Produkte
+    let cart = [];
 
     // --- 2. SHOP AUFBAUEN ---
     function renderShop() {
@@ -412,7 +449,6 @@
       updateCartUI();
     }
 
-    // Berechnung des Gesamtbetrags
     function getCartTotal() {
       return cart.reduce((sum, index) => sum + products[index].price, 0).toFixed(2);
     }
@@ -444,64 +480,94 @@
       document.getElementById('cartTotalValue').innerText = "$" + getCartTotal();
     }
 
-    // --- 4. CHECKOUT LOGIK (Echtes PayPal) ---
+    // --- 4. CHECKOUT LOGIK MIT MAKE.COM INTEGRATION ---
     function initPayPal() {
       paypal.Buttons({
-        createOrder: function(data, actions) {
-          if(cart.length === 0) { alert("Cart is empty!"); return; }
-          return actions.order.create({ purchase_units: [{ amount: { value: getCartTotal() } }] });
+        
+        // Blockiert den PayPal Button, bis E-Mail eingegeben ist
+        onClick: function(data, actions) {
+          const emailInput = document.getElementById('buyerEmail');
+          
+          if(cart.length === 0) { 
+            alert("Your cart is empty!"); 
+            return actions.reject(); 
+          }
+          
+          if(!emailInput.value || !emailInput.value.includes('@')) {
+            alert("Please enter a valid email address so we can deliver your items.");
+            emailInput.focus();
+            return actions.reject();
+          }
+          
+          return actions.resolve();
         },
+        
+        createOrder: function(data, actions) {
+          const buyerEmail = document.getElementById('buyerEmail').value;
+          
+          return actions.order.create({ 
+            purchase_units: [{ 
+              amount: { 
+                value: getCartTotal() 
+              },
+              // HIER passiert die Magie: Wir schieben die E-Mail als ID an Make.com
+              custom_id: buyerEmail 
+            }],
+            payer: {
+              email_address: buyerEmail
+            }
+          });
+        },
+        
         onApprove: function(data, actions) {
-          // Lade-Overlay aktivieren, während die Transaktion verbucht wird
           document.getElementById('processingOverlay').classList.add('active');
           return actions.order.capture().then(function(details) {
             document.getElementById('processingOverlay').classList.remove('active');
-            handleSuccessfulPayment(details.payer.name.given_name, details.id);
+            
+            // Holt die E-Mail wieder, um sie in unsere Erfolgs-Funktion zu übergeben
+            const buyerEmail = document.getElementById('buyerEmail').value;
+            handleSuccessfulPayment(details.payer.name.given_name, details.id, buyerEmail);
           });
         }
       }).render('#paypal-button-container');
     }
 
-    // --- 5. RECHNUNGEN & DOWNLOADS GENERIEREN ---
-    function handleSuccessfulPayment(buyerName, transactionId) {
-      alert(`Payment Successful! Total: $${getCartTotal()}\nYour Ebook, Invoice and the Checkout log will download now.`);
-      
-      // 1. Rechnungsdaten generieren
+    // --- 5. RECHNUNGEN & ABSCHLUSS ---
+    function handleSuccessfulPayment(buyerName, transactionId, buyerEmail) {
       let date = new Date().toLocaleString();
       let totalStr = getCartTotal();
       let purchasedItemsInfo = cart.map(index => `- ${products[index].title} ($${products[index].price})`).join('\n');
 
-      // 2. Kunden Rechnungstext
-      let customerInvoice = `=================================\nPEACY GAMES - INVOICE\n=================================\nDate: ${date}\nBuyer: ${buyerName}\nTransaction ID: ${transactionId}\n\nItems Purchased:\n${purchasedItemsInfo}\n\nTotal Paid: $${totalStr}\n\nThank you for supporting Peacy Games!`;
+      let customerInvoice = `=================================\nPEACY GAMES - INVOICE\n=================================\nDate: ${date}\nBuyer: ${buyerName}\nEmail: ${buyerEmail}\nTransaction ID: ${transactionId}\n\nItems Purchased:\n${purchasedItemsInfo}\n\nTotal Paid: $${totalStr}\n\nThank you for supporting Peacy Games!`;
 
-      // 3. Admin Checkout Log
-      let adminCheckoutLog = `--- CHECKOUT RECORD ---\nDate: ${date}\nTransaction ID: ${transactionId}\nCustomer: ${buyerName}\nTotal Revenue: $${totalStr}\nItems Sold:\n${purchasedItemsInfo}\nStatus: PAID AND DELIVERED\n-----------------------`;
+      let adminCheckoutLog = `--- CHECKOUT RECORD ---\nDate: ${date}\nTransaction ID: ${transactionId}\nCustomer: ${buyerName}\nEmail: ${buyerEmail}\nTotal Revenue: $${totalStr}\nItems Sold:\n${purchasedItemsInfo}\nStatus: PAID AND DELIVERED\n-----------------------`;
 
-      // Alle Downloads nacheinander ausführen
+      // Benutzer benachrichtigen
+      alert(`Payment Successful! Total: $${totalStr}\n\nWe have received your payment. An automated email with your Ebook is being processed and will be sent to:\n${buyerEmail}\n\n(As a fallback, your files will also download directly now.)`);
+
+      // Fallback: Direkte Downloads, falls die E-Mail mal etwas länger braucht
       cart.forEach(index => {
-        downloadFile(products[index].filename, null); // Lädt lokales PDF runter
+        downloadFile(products[index].filename, null); 
       });
       
       downloadFile('Rechnung_Kunde.txt', customerInvoice);
       downloadFile('checkout.txt', adminCheckoutLog);
 
-      // Warenkorb zurücksetzen
+      // Warenkorb aufräumen
       cart = [];
+      document.getElementById('buyerEmail').value = '';
       updateCartUI();
       toggleCart();
     }
 
-    // Hilfsfunktion zum Herunterladen von Textinhalten oder lokalen Dateien
     function downloadFile(filename, textContent) {
       const link = document.createElement('a');
       link.download = filename;
       
       if (textContent !== null) {
-        // Generiert Textdatei direkt im Browser
         const blob = new Blob([textContent], { type: 'text/plain' });
         link.href = URL.createObjectURL(blob);
       } else {
-        // Lädt Datei vom Server
         link.href = filename; 
       }
       
@@ -510,7 +576,6 @@
       document.body.removeChild(link);
     }
 
-    // Starte den Shop und PayPal-Button initialisieren
     renderShop();
     updateCartUI();
     initPayPal();
