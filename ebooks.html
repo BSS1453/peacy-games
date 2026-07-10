@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peacy Games - Ebook Shop</title>
+  <!-- Ersetze hier später die Client-ID durch deine LIVE Client-ID, wenn du fertig bist -->
   <script src="https://www.paypal.com/sdk/js?client-id=BAABqjTrJW3wiownOoNWddD8o92eP8Hxd95jMOFsD4-lxhZAMSRejnL2i-Ur7Oy-RQlLcLhrAR6kopDGnY&currency=USD"></script>
   <style>
     :root {
@@ -369,6 +370,9 @@
   </footer>
 
   <script>
+    // --- KONFIGURATION: HIER DEINE MAKE.COM URL EINTRAGEN ---
+    const MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/75b1bwr8apr1fmbdz7pfspt7yq640jmw";
+
     // --- 1. INDEX-BASIERTE PRODUKT DATENBANK ---
     const products = [
       {
@@ -480,7 +484,7 @@
       document.getElementById('cartTotalValue').innerText = "$" + getCartTotal();
     }
 
-    // --- 4. CHECKOUT LOGIK MIT MAKE.COM INTEGRATION ---
+    // --- 4. CHECKOUT LOGIK ---
     function initPayPal() {
       paypal.Buttons({
         
@@ -509,9 +513,7 @@
             purchase_units: [{ 
               amount: { 
                 value: getCartTotal() 
-              },
-              // HIER passiert die Magie: Wir schieben die E-Mail als ID an Make.com
-              custom_id: buyerEmail 
+              }
             }],
             payer: {
               email_address: buyerEmail
@@ -524,7 +526,6 @@
           return actions.order.capture().then(function(details) {
             document.getElementById('processingOverlay').classList.remove('active');
             
-            // Holt die E-Mail wieder, um sie in unsere Erfolgs-Funktion zu übergeben
             const buyerEmail = document.getElementById('buyerEmail').value;
             handleSuccessfulPayment(details.payer.name.given_name, details.id, buyerEmail);
           });
@@ -532,20 +533,41 @@
       }).render('#paypal-button-container');
     }
 
-    // --- 5. RECHNUNGEN & ABSCHLUSS ---
+    // --- 5. RECHNUNGEN, MAKE.COM & ABSCHLUSS ---
     function handleSuccessfulPayment(buyerName, transactionId, buyerEmail) {
       let date = new Date().toLocaleString();
       let totalStr = getCartTotal();
       let purchasedItemsInfo = cart.map(index => `- ${products[index].title} ($${products[index].price})`).join('\n');
+      
+      // Für Make.com (nur die reinen Namen der E-Books, z.B. "Tic Tac Toe in Python")
+      let justItemNames = cart.map(index => products[index].title).join(', ');
 
+      // --- NEU: DIREKTER DATENVERSAND AN MAKE.COM ---
+      if(MAKE_WEBHOOK_URL !== "HIER_DEINE_MAKE_WEBHOOK_URL_EINFÜGEN") {
+        fetch(MAKE_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            "transaction_id": transactionId,
+            "customer_name": buyerName,
+            "customer_email": buyerEmail,
+            "amount": totalStr,
+            "items_purchased": justItemNames
+          })
+        }).then(() => console.log("Make.com benachrichtigt!"))
+          .catch(e => console.error("Fehler beim Senden an Make.com", e));
+      } else {
+        console.warn("Make.com Webhook URL wurde noch nicht im Code eingetragen!");
+      }
+
+      // Rechnungen generieren
       let customerInvoice = `=================================\nPEACY GAMES - INVOICE\n=================================\nDate: ${date}\nBuyer: ${buyerName}\nEmail: ${buyerEmail}\nTransaction ID: ${transactionId}\n\nItems Purchased:\n${purchasedItemsInfo}\n\nTotal Paid: $${totalStr}\n\nThank you for supporting Peacy Games!`;
-
       let adminCheckoutLog = `--- CHECKOUT RECORD ---\nDate: ${date}\nTransaction ID: ${transactionId}\nCustomer: ${buyerName}\nEmail: ${buyerEmail}\nTotal Revenue: $${totalStr}\nItems Sold:\n${purchasedItemsInfo}\nStatus: PAID AND DELIVERED\n-----------------------`;
 
       // Benutzer benachrichtigen
       alert(`Payment Successful! Total: $${totalStr}\n\nWe have received your payment. An automated email with your Ebook is being processed and will be sent to:\n${buyerEmail}\n\n(As a fallback, your files will also download directly now.)`);
 
-      // Fallback: Direkte Downloads, falls die E-Mail mal etwas länger braucht
+      // Fallback: Direkte Downloads
       cart.forEach(index => {
         downloadFile(products[index].filename, null); 
       });
