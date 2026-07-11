@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peacy Games - Ebook Shop</title>
-  <!-- Ersetze hier später die Client-ID durch deine LIVE Client-ID, wenn du fertig bist -->
+  
+  <!-- WICHTIG: Ersetze 'DEINE_LIVE_CLIENT_ID_HIER' durch deine echte Live-ID aus dem PayPal Dashboard -->
   <script src="https://www.paypal.com/sdk/js?client-id=BAABqjTrJW3wiownOoNWddD8o92eP8Hxd95jMOFsD4-lxhZAMSRejnL2i-Ur7Oy-RQlLcLhrAR6kopDGnY&currency=USD"></script>
+  
   <style>
     :root {
       --bg-main: #0b0c10;
@@ -354,7 +356,6 @@
         <span id="cartTotalValue">$0.00</span>
       </div>
 
-      <!-- E-MAIL FELD HINZUGEFÜGT -->
       <div class="email-capture">
         <label for="buyerEmail">Email for Delivery</label>
         <input type="email" id="buyerEmail" placeholder="you@example.com" required>
@@ -370,18 +371,15 @@
   </footer>
 
   <script>
-    // --- KONFIGURATION: HIER DEINE MAKE.COM URL EINTRAGEN ---
-    const MAKE_WEBHOOK_URL = "HIER_DEINE_MAKE_WEBHOOK_URL_EINFÜGEN";
+    // SICHERHEIT: Webhook-URL entfernt. Lokale Dateinamen ('filename') entfernt, da die Auslieferung sicher über Make.com aus dem Google Drive erfolgt.
 
-    // --- 1. INDEX-BASIERTE PRODUKT DATENBANK ---
     const products = [
       {
         index: 0,
         title: "Tic Tac Toe in Python",
         author: "Peacy Games",
-        price: 0.01,
+        price: 4.90, // Echter Preis wiederhergestellt
         image: "https://images.unsplash.com/photo-1526379095098-d400fd0bfce8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        filename: "TicTacToe_Python_By_PeacyGames.pdf",
         available: true
       },
       {
@@ -390,14 +388,12 @@
         author: "Peacy Games",
         price: 0.00,
         image: "https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        filename: "",
         available: false
       }
     ];
 
     let cart = [];
 
-    // --- 2. SHOP AUFBAUEN ---
     function renderShop() {
       const grid = document.getElementById('shopGrid');
       grid.innerHTML = '';
@@ -425,7 +421,6 @@
       });
     }
 
-    // --- 3. WARENKORB LOGIK ---
     function toggleCart() {
       document.getElementById('cartSidebar').classList.toggle('open');
       document.getElementById('cartOverlay').classList.toggle('active');
@@ -433,7 +428,6 @@
 
     function addToCart(index) {
       const product = products[index];
-      
       if (!product || !product.available) return;
 
       if (cart.includes(index)) {
@@ -484,11 +478,9 @@
       document.getElementById('cartTotalValue').innerText = "$" + getCartTotal();
     }
 
-    // --- 4. CHECKOUT LOGIK ---
+    // --- SICHERE PAYPAL LOGIK ---
     function initPayPal() {
       paypal.Buttons({
-        
-        // Blockiert den PayPal Button, bis E-Mail eingegeben ist
         onClick: function(data, actions) {
           const emailInput = document.getElementById('buyerEmail');
           
@@ -513,7 +505,9 @@
             purchase_units: [{ 
               amount: { 
                 value: getCartTotal() 
-              }
+              },
+              // WICHTIG: Die E-Mail wird sicher über PayPal an Make.com übergeben (kein direkter Fetch mehr)
+              custom_id: buyerEmail 
             }],
             payer: {
               email_address: buyerEmail
@@ -526,6 +520,7 @@
           return actions.order.capture().then(function(details) {
             document.getElementById('processingOverlay').classList.remove('active');
             
+            // Zahlung erfolgreich bei PayPal bestätigt!
             const buyerEmail = document.getElementById('buyerEmail').value;
             handleSuccessfulPayment(details.payer.name.given_name, details.id, buyerEmail);
           });
@@ -533,69 +528,20 @@
       }).render('#paypal-button-container');
     }
 
-    // --- 5. RECHNUNGEN, MAKE.COM & ABSCHLUSS ---
+    // --- ABSCHLUSS NACH ERFOLGREICHER ZAHLUNG ---
     function handleSuccessfulPayment(buyerName, transactionId, buyerEmail) {
-      let date = new Date().toLocaleString();
-      let totalStr = getCartTotal();
-      let purchasedItemsInfo = cart.map(index => `- ${products[index].title} ($${products[index].price})`).join('\n');
+      // SICHERHEIT: Keine lokalen Fallback-Downloads mehr. Der Versand erfolgt ausschließlich über das Backend/Make.com.
+      // Keine Webhook URL im Code sichtbar.
       
-      // Für Make.com (nur die reinen Namen der E-Books, z.B. "Tic Tac Toe in Python")
-      let justItemNames = cart.map(index => products[index].title).join(', ');
-
-      // --- NEU: DIREKTER DATENVERSAND AN MAKE.COM ---
-      if(MAKE_WEBHOOK_URL !== "HIER_DEINE_MAKE_WEBHOOK_URL_EINFÜGEN") {
-        fetch(MAKE_WEBHOOK_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            "transaction_id": transactionId,
-            "customer_name": buyerName,
-            "customer_email": buyerEmail,
-            "amount": totalStr,
-            "items_purchased": justItemNames
-          })
-        }).then(() => console.log("Make.com benachrichtigt!"))
-          .catch(e => console.error("Fehler beim Senden an Make.com", e));
-      } else {
-        console.warn("Make.com Webhook URL wurde noch nicht im Code eingetragen!");
-      }
-
-      // Rechnungen generieren
-      let customerInvoice = `=================================\nPEACY GAMES - INVOICE\n=================================\nDate: ${date}\nBuyer: ${buyerName}\nEmail: ${buyerEmail}\nTransaction ID: ${transactionId}\n\nItems Purchased:\n${purchasedItemsInfo}\n\nTotal Paid: $${totalStr}\n\nThank you for supporting Peacy Games!`;
-      let adminCheckoutLog = `--- CHECKOUT RECORD ---\nDate: ${date}\nTransaction ID: ${transactionId}\nCustomer: ${buyerName}\nEmail: ${buyerEmail}\nTotal Revenue: $${totalStr}\nItems Sold:\n${purchasedItemsInfo}\nStatus: PAID AND DELIVERED\n-----------------------`;
-
-      // Benutzer benachrichtigen
-      alert(`Payment Successful! Total: $${totalStr}\n\nWe have received your payment. An automated email with your Ebook is being processed and will be sent to:\n${buyerEmail}\n\n(As a fallback, your files will also download directly now.)`);
-
-      // Fallback: Direkte Downloads
-      cart.forEach(index => {
-        downloadFile(products[index].filename, null); 
-      });
+      const successMessage = `Payment Successful!\n\nThank you for your purchase, ${buyerName}. Your transaction ID is ${transactionId}.\n\nAn automated email containing your Ebook is currently being processed and will be delivered to:\n${buyerEmail}\n\nPlease check your inbox (and spam folder) shortly.`;
       
-      downloadFile('Rechnung_Kunde.txt', customerInvoice);
-      downloadFile('checkout.txt', adminCheckoutLog);
+      alert(successMessage);
 
       // Warenkorb aufräumen
       cart = [];
       document.getElementById('buyerEmail').value = '';
       updateCartUI();
       toggleCart();
-    }
-
-    function downloadFile(filename, textContent) {
-      const link = document.createElement('a');
-      link.download = filename;
-      
-      if (textContent !== null) {
-        const blob = new Blob([textContent], { type: 'text/plain' });
-        link.href = URL.createObjectURL(blob);
-      } else {
-        link.href = filename; 
-      }
-      
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
     }
 
     renderShop();
