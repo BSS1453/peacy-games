@@ -58,7 +58,7 @@
     }
 
     .logo-img {
-      height: 50px; /* Anpassen je nach Logo-Proportion */
+      height: 50px;
       width: auto;
       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
       filter: drop-shadow(0 0 5px rgba(102, 252, 241, 0.5));
@@ -89,7 +89,6 @@
       position: relative;
     }
 
-    /* Coole Hover-Linie für Nav-Links */
     .nav-links a::after {
       content: '';
       position: absolute;
@@ -122,7 +121,7 @@
       box-shadow: 0 0 20px var(--accent-cyan);
     }
 
-    /* --- HERO SECTION (Animated Gradient Background) --- */
+    /* --- HERO SECTION --- */
     .hero {
       min-height: 85vh;
       display: flex;
@@ -394,7 +393,6 @@
       color: #a0a5aa;
     }
 
-    /* --- NEW STORE BUTTONS (NO IMAGE ERRORS) --- */
     .game-links {
       display: flex;
       gap: 15px;
@@ -440,7 +438,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* Steam Button Hover Effect */
     .steam-btn:hover {
       background: #171a21;
       border-color: #66c0f4;
@@ -450,7 +447,6 @@
     .steam-btn:hover img { filter: brightness(1); }
     .steam-btn:hover div strong { color: #66c0f4; }
 
-    /* Google Play Button Hover Effect */
     .play-btn:hover {
       background: #111;
       border-color: #00ff00;
@@ -459,7 +455,6 @@
     }
     .play-btn:hover img { filter: brightness(1); }
     .play-btn:hover div strong { color: #00ff00; }
-
 
     /* --- MINIGAME SECTION --- */
     .minigame-section {
@@ -542,7 +537,6 @@
 <body>
 
   <nav>
-    <!-- LOGO MIT BILD: Fallback-Script falls logo.png noch nicht im Ordner liegt -->
     <a href="#hero" class="logo-container">
       <img src="logo.png" alt="Peacy Games Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
       <h2 style="display: none; color: var(--accent-cyan); margin: 0; text-shadow: 0 0 15px var(--accent-cyan); letter-spacing: 1px;">PEACY GAMES</h2>
@@ -607,11 +601,31 @@
           <h3>Demon Alive</h3>
           <p>Face the darkness in this thrilling PC experience. Survive, fight, and conquer your inner demons.</p>
           <div class="game-links">
-            <!-- ECHTER STEAM BUTTON MIT CSS/SVG (Keine Image Fehler mehr!) -->
             <a href="https://store.steampowered.com/app/3339100/Demon_Alive/" target="_blank" class="store-badge steam-btn">
               <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam Icon">
               <div>
                 <span>Available on</span>
+                <strong>Steam</strong>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRE-REGISTRATION: ICE CREAM TRUCK SIMULATOR (PC) -->
+      <div class="game-card reveal" data-category="pc">
+        <div class="game-img-wrapper">
+            <div class="game-img" style="background-image: url('https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5008120/header.jpg');"></div>
+        </div>
+        <div class="game-content">
+          <span class="tag" style="background: rgba(255, 193, 7, 0.1); color: #ffc107; border-color: #ffc107;">Coming Soon</span>
+          <h3>Ice Cream Truck Simulator</h3>
+          <p>Build your sweet empire! Drive, customize, and manage your very own ice cream business in this fun simulator.</p>
+          <div class="game-links">
+            <a href="https://store.steampowered.com/app/5008120/Ice_Cream_Truck_Simulator/" target="_blank" class="store-badge steam-btn">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam Icon">
+              <div>
+                <span>WISHLIST ON</span>
                 <strong>Steam</strong>
               </div>
             </a>
@@ -629,7 +643,6 @@
           <h3>Tig Tag Flag</h3>
           <p>A fun and fast-paced mobile game. Grab the flag, outsmart your opponents, and claim victory!</p>
           <div class="game-links">
-            <!-- ECHTER GOOGLE PLAY BUTTON MIT CSS/SVG -->
             <a href="https://play.google.com/store/apps/details?id=com.peacygames.tigtagflag&hl=en-US" target="_blank" class="store-badge play-btn">
               <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Icon">
               <div>
@@ -655,6 +668,28 @@
               <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Icon">
               <div>
                 <span>GET IT ON</span>
+                <strong>Google Play</strong>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRE-REGISTRATION: TINT TRAIL (MOBILE) -->
+      <div class="game-card reveal" data-category="mobile">
+        <div class="game-img-wrapper">
+            <!-- Platzhalter-Bild, da der genaue Google Play Bild-Hash nicht generiert werden kann -->
+            <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+        </div>
+        <div class="game-content">
+          <span class="tag" style="background: rgba(255, 193, 7, 0.1); color: #ffc107; border-color: #ffc107;">Pre-Registration</span>
+          <h3>Tint Trail</h3>
+          <p>Leave your mark! Navigate through colorful puzzles and paint your way to victory in this vibrant adventure.</p>
+          <div class="game-links">
+            <a href="https://play.google.com/store/apps/details?id=com.peacygames.tinttrail&hl=en-US" target="_blank" class="store-badge play-btn">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Icon">
+              <div>
+                <span>PRE-REGISTER ON</span>
                 <strong>Google Play</strong>
               </div>
             </a>
