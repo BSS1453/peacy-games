@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Peacy Games - Game Development Studio</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Peacy Games – Game Development Studio</title>
+<style>
     :root {
       --bg-main: #0b0c10;
       --bg-card: #1f2833;
@@ -533,239 +534,223 @@
       100% { transform: translateY(-150px) scale(2); opacity: 0; filter: blur(4px); }
     }
   </style>
-</head>
+<meta content="Discover innovative games for PC, mobile, VR, and consoles from Peacy Games, your studio for interactive entertainment." name="description"/><link href="https://peacy.games/" rel="canonical"/></head>
 <body>
-
-  <nav>
-    <a href="#hero" class="logo-container">
-      <img src="logo.png" alt="Peacy Games Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-      <h2 style="display: none; color: var(--accent-cyan); margin: 0; text-shadow: 0 0 15px var(--accent-cyan); letter-spacing: 1px;">PEACY GAMES</h2>
-    </a>
-    <div class="nav-links">
-      <a href="#hero">Home</a>
-      <a href="#platforms">Platforms</a>
-      <a href="#games">Our Games</a>
-      <a href="#minigame">Play!</a>
-      <a href="ebooks.html" class="shop-link">📚 Ebook Shop</a>
-    </div>
-  </nav>
-
-  <section class="hero" id="hero">
-    <div class="hero-content">
-      <h1 class="reveal">We Build <span>Worlds</span></h1>
-      <p class="reveal">Passionate game development for PC, Mobile, Virtual Reality, and Next-Gen Consoles. Experience the future of interactive entertainment.</p>
-      <a href="#games" class="btn reveal">Discover Games</a>
-    </div>
-  </section>
-
-  <section id="platforms">
-    <h2 class="section-title reveal">Our Expertise</h2>
-    <div class="platforms-grid">
-      <div class="platform-card reveal">
-        <h3>PC Games</h3>
-        <p>High-resolution textures, deep mechanics, and thrilling gameplay built natively for Steam and Epic.</p>
-      </div>
-      <div class="platform-card reveal">
-        <h3>Mobile Games</h3>
-        <p>Addictive casual and action experiences, perfectly optimized for Android and iOS performance.</p>
-      </div>
-      <div class="platform-card reveal">
-        <h3>VR Games</h3>
-        <p>Immersive virtual reality worlds that push the boundaries of perception and physical interaction.</p>
-      </div>
-      <div class="platform-card reveal">
-        <h3>Console Games</h3>
-        <p>Experiences highly optimized for the performance of PlayStation, Xbox, and Nintendo Switch.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="games">
-    <h2 class="section-title reveal">Our Games</h2>
-    
-    <div class="filter-buttons reveal">
-      <button class="filter-btn active" onclick="filterGames('all')">All</button>
-      <button class="filter-btn" onclick="filterGames('pc')">PC</button>
-      <button class="filter-btn" onclick="filterGames('mobile')">Mobile</button>
-      <button class="filter-btn" onclick="filterGames('vr')">VR / Console</button>
-    </div>
-
-    <div class="games-grid">
-      <!-- PC GAME -->
-      <div class="game-card reveal" data-category="pc">
-        <div class="game-img-wrapper">
-            <div class="game-img" style="background-image: url('https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3339100/header.jpg?t=1761659483');"></div>
-        </div>
-        <div class="game-content">
-          <span class="tag">PC Game</span>
-          <h3>Demon Alive</h3>
-          <p>Face the darkness in this thrilling PC experience. Survive, fight, and conquer your inner demons.</p>
-          <div class="game-links">
-            <a href="https://store.steampowered.com/app/3339100/Demon_Alive/" target="_blank" class="store-badge steam-btn">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam Icon">
-              <div>
-                <span>Available on</span>
-                <strong>Steam</strong>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- PRE-REGISTRATION: ICE CREAM TRUCK SIMULATOR (PC) -->
-      <div class="game-card reveal" data-category="pc">
-        <div class="game-img-wrapper">
-            <div class="game-img" style="background-image: url('https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5008120/3a3015ede2fa4dd6605056ae609328277397e0b8/header.jpg?t=1786284698');"></div>
-        </div>
-        <div class="game-content">
-          <span class="tag" style="background: rgba(255, 193, 7, 0.1); color: #ffc107; border-color: #ffc107;">Coming Soon</span>
-          <h3>Ice Cream Truck Simulator</h3>
-          <p>Build your sweet empire! Drive, customize, and manage your very own ice cream business in this fun simulator.</p>
-          <div class="game-links">
-            <a href="https://store.steampowered.com/app/5008120/Ice_Cream_Truck_Simulator/" target="_blank" class="store-badge steam-btn">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam Icon">
-              <div>
-                <span>WISHLIST ON</span>
-                <strong>Steam</strong>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- MOBILE GAME 1 -->
-      <div class="game-card reveal" data-category="mobile">
-        <div class="game-img-wrapper">
-            <div class="game-img" style="background-image: url('https://play-lh.googleusercontent.com/hWzXMwhQjE0DqjGctr9NYXUHTGZZqJQd3ujTRwYGX8Od7OpkntSdVgGxL87tekdrSEIOVz0OOlDdMy9Voy2m=w240-h480-rw');"></div>
-        </div>
-        <div class="game-content">
-          <span class="tag">Mobile Game</span>
-          <h3>Tig Tag Flag</h3>
-          <p>A fun and fast-paced mobile game. Grab the flag, outsmart your opponents, and claim victory!</p>
-          <div class="game-links">
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.tigtagflag&hl=en-US" target="_blank" class="store-badge play-btn">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Icon">
-              <div>
-                <span>GET IT ON</span>
-                <strong>Google Play</strong>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- MOBILE GAME 2 -->
-      <div class="game-card reveal" data-category="mobile">
-        <div class="game-img-wrapper">
-            <div class="game-img" style="background-image: url('https://play-lh.googleusercontent.com/5Y_3ZQp3ouSlZAbSb72Kj3uxCdrSmuARAgrSvoa5Y9Suo9vPJFN0DWPRNsdyUYwEjugbRWOHZ1OdORN3JPL-eg=w240-h480-rw');"></div>
-        </div>
-        <div class="game-content">
-          <span class="tag">Mobile Game</span>
-          <h3>Up Break</h3>
-          <p>Break your way up in this highly addictive arcade experience. How high can you climb?</p>
-          <div class="game-links">
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.upbreak&hl=en-US" target="_blank" class="store-badge play-btn">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Icon">
-              <div>
-                <span>GET IT ON</span>
-                <strong>Google Play</strong>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- PRE-REGISTRATION: TINT TRAIL (MOBILE) -->
-      <div class="game-card reveal" data-category="mobile">
-        <div class="game-img-wrapper">
-            <div class="game-img" style="background-image: url('https://play-lh.googleusercontent.com/Idey_adu4Za4_gCvxnuV8TYRGov7Lg-FEL54w1y0ckhPM937xFfZkvF70SvLhJzHmF7NY06mCY48nSZtxUK2=w480-h960-rw');"></div>
-        </div>
-        <div class="game-content">
-          <span class="tag" style="background: rgba(255, 193, 7, 0.1); color: #ffc107; border-color: #ffc107;">Pre-Registration</span>
-          <h3>Tint Trail</h3>
-          <p>Leave your mark! Navigate through colorful puzzles and paint your way to victory in this vibrant adventure.</p>
-          <div class="game-links">
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.tinttrail&hl=en-US" target="_blank" class="store-badge play-btn">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Icon">
-              <div>
-                <span>PRE-REGISTER ON</span>
-                <strong>Google Play</strong>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- MOBILE GAME 3 -->
-      <div class="game-card reveal" data-category="mobile">
-        <div class="game-img-wrapper">
-            <div class="game-img" style="background-image: url('https://play-lh.googleusercontent.com/lALl9JPWDRJERlrWdmrCFYNKhw2cJgfEQ3XEu7pYjrFpkKPPUgCzYv6447730quuMrhzZts0Tm2-ZgIKMYZqS2E=w240-h480-rw');"></div>
-        </div>
-        <div class="game-content">
-          <span class="tag">Mobile Game</span>
-          <h3>Hezarfen</h3>
-          <p>Take to the skies! Soar through the air and master the art of flying in this unique adventure.</p>
-          <div class="game-links">
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.hezarfen&hl=en-US" target="_blank" class="store-badge play-btn">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Icon">
-              <div>
-                <span>GET IT ON</span>
-                <strong>Google Play</strong>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- MAHJONG SIGHTS -->
-      <div class="game-card reveal" data-category="mobile">
-        <div class="game-img-wrapper">
-            <div class="game-img" style="background-image: url('https://play-lh.googleusercontent.com/gx6m-sb3eRtZVVgt4lNAw_M0GvLp510vpkrs98RtOJrMLzNIbUEgirZONBT7Wl7sjoeC27M7wx6Hn5ERWIx5Dw=w240-h480-rw');"></div>
-        </div>
-        <div class="game-content">
-          <span class="tag">Mobile Game</span>
-          <h3>Mahjong Sights</h3>
-          <p>Relax and challenge your brain with classic Mahjong puzzles in beautiful, immersive settings.</p>
-          <div class="game-links">
-            <a href="https://play.google.com/store/apps/details?id=com.peacygames.mahjongsights&hl=en-US" target="_blank" class="store-badge play-btn">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Icon">
-              <div>
-                <span>GET IT ON</span>
-                <strong>Google Play</strong>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- COMING SOON PROJECT -->
-      <div class="game-card reveal" data-category="vr console">
-        <div class="game-img-wrapper">
-            <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
-        </div>
-        <div class="game-content">
-          <span class="tag" style="background: rgba(255,0,85,0.1); color:#ff0055; border-color: #ff0055;">In Development</span>
-          <h3>Unannounced VR Project</h3>
-          <p>We are currently working on top-secret immersive experiences for VR and Next-Gen Consoles.</p>
-          <div class="game-links">
-            <span style="color: #66fcf1; font-weight: bold; padding: 10px 0; text-shadow: 0 0 10px rgba(102, 252, 241, 0.5); font-size: 1.2rem;">Coming 2027</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="minigame" class="minigame-section reveal">
-    <h2 class="section-title">Take a Break: Neon Defender</h2>
-    <canvas id="gameCanvas" width="600" height="300"></canvas>
-    <p class="game-instructions">Hover over the canvas to aim. Click to shoot the falling neon blocks!</p>
-  </section>
-
-  <footer>
-    <p>&copy; 2026 Peacy Games. All rights reserved.</p>
-  </footer>
-
-  <script>
+<nav>
+<a class="logo-container" href="#hero">
+<img alt="Peacy Games Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" src="logo.png"/>
+<h2 style="display: none; color: var(--accent-cyan); margin: 0; text-shadow: 0 0 15px var(--accent-cyan); letter-spacing: 1px;">PEACY GAMES</h2>
+</a>
+<div class="nav-links">
+<a href="#hero">Home</a>
+<a href="#platforms">Platforms</a>
+<a href="#games">Our Games</a>
+<a href="#minigame">Play!</a>
+<a class="shop-link" href="ebooks.html">📚 Ebook Shop</a>
+</div>
+</nav>
+<section class="hero" id="hero">
+<div class="hero-content">
+<h1 class="reveal">We Build <span>Worlds</span></h1>
+<p class="reveal">Passionate game development for PC, Mobile, Virtual Reality, and Next-Gen Consoles. Experience the future of interactive entertainment.</p>
+<a class="btn reveal" href="#games">Discover Games</a>
+</div>
+</section>
+<section id="platforms">
+<h2 class="section-title reveal">Our Expertise</h2>
+<div class="platforms-grid">
+<div class="platform-card reveal">
+<h3>PC Games</h3>
+<p>High-resolution textures, deep mechanics, and thrilling gameplay built natively for Steam and Epic.</p>
+</div>
+<div class="platform-card reveal">
+<h3>Mobile Games</h3>
+<p>Addictive casual and action experiences, perfectly optimized for Android and iOS performance.</p>
+</div>
+<div class="platform-card reveal">
+<h3>VR Games</h3>
+<p>Immersive virtual reality worlds that push the boundaries of perception and physical interaction.</p>
+</div>
+<div class="platform-card reveal">
+<h3>Console Games</h3>
+<p>Experiences highly optimized for the performance of PlayStation, Xbox, and Nintendo Switch.</p>
+</div>
+</div>
+</section>
+<section id="games">
+<h2 class="section-title reveal">Our Games</h2>
+<div class="filter-buttons reveal">
+<button class="filter-btn active" onclick="filterGames('all')">All</button>
+<button class="filter-btn" onclick="filterGames('pc')">PC</button>
+<button class="filter-btn" onclick="filterGames('mobile')">Mobile</button>
+<button class="filter-btn" onclick="filterGames('vr')">VR / Console</button>
+</div>
+<div class="games-grid">
+<!-- PC GAME -->
+<div class="game-card reveal" data-category="pc">
+<div class="game-img-wrapper">
+<div class="game-img" style="background-image: url('https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3339100/header.jpg?t=1761659483');"></div>
+</div>
+<div class="game-content">
+<span class="tag">PC Game</span>
+<h3>Demon Alive</h3>
+<p>Face the darkness in this thrilling PC experience. Survive, fight, and conquer your inner demons.</p>
+<div class="game-links">
+<a class="store-badge steam-btn" href="https://store.steampowered.com/app/3339100/Demon_Alive/" target="_blank">
+<img alt="Steam Icon" src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg"/>
+<div>
+<span>Available on</span>
+<strong>Steam</strong>
+</div>
+</a>
+</div>
+</div>
+</div>
+<!-- PRE-REGISTRATION: ICE CREAM TRUCK SIMULATOR (PC) -->
+<div class="game-card reveal" data-category="pc">
+<div class="game-img-wrapper">
+<div class="game-img" style="background-image: url('https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5008120/3a3015ede2fa4dd6605056ae609328277397e0b8/header.jpg?t=1786284698');"></div>
+</div>
+<div class="game-content">
+<span class="tag" style="background: rgba(255, 193, 7, 0.1); color: #ffc107; border-color: #ffc107;">Coming Soon</span>
+<h3>Ice Cream Truck Simulator</h3>
+<p>Build your sweet empire! Drive, customize, and manage your very own ice cream business in this fun simulator.</p>
+<div class="game-links">
+<a class="store-badge steam-btn" href="https://store.steampowered.com/app/5008120/Ice_Cream_Truck_Simulator/" target="_blank">
+<img alt="Steam Icon" src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg"/>
+<div>
+<span>WISHLIST ON</span>
+<strong>Steam</strong>
+</div>
+</a>
+</div>
+</div>
+</div>
+<!-- MOBILE GAME 1 -->
+<div class="game-card reveal" data-category="mobile">
+<div class="game-img-wrapper">
+<div class="game-img" style="background-image: url('https://play-lh.googleusercontent.com/hWzXMwhQjE0DqjGctr9NYXUHTGZZqJQd3ujTRwYGX8Od7OpkntSdVgGxL87tekdrSEIOVz0OOlDdMy9Voy2m=w240-h480-rw');"></div>
+</div>
+<div class="game-content">
+<span class="tag">Mobile Game</span>
+<h3>Tig Tag Flag</h3>
+<p>A fun and fast-paced mobile game. Grab the flag, outsmart your opponents, and claim victory!</p>
+<div class="game-links">
+<a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.tigtagflag&amp;hl=en-US" target="_blank">
+<img alt="Google Play Icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"/>
+<div>
+<span>GET IT ON</span>
+<strong>Google Play</strong>
+</div>
+</a>
+</div>
+</div>
+</div>
+<!-- MOBILE GAME 2 -->
+<div class="game-card reveal" data-category="mobile">
+<div class="game-img-wrapper">
+<div class="game-img" style="background-image: url('https://play-lh.googleusercontent.com/5Y_3ZQp3ouSlZAbSb72Kj3uxCdrSmuARAgrSvoa5Y9Suo9vPJFN0DWPRNsdyUYwEjugbRWOHZ1OdORN3JPL-eg=w240-h480-rw');"></div>
+</div>
+<div class="game-content">
+<span class="tag">Mobile Game</span>
+<h3>Up Break</h3>
+<p>Break your way up in this highly addictive arcade experience. How high can you climb?</p>
+<div class="game-links">
+<a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.upbreak&amp;hl=en-US" target="_blank">
+<img alt="Google Play Icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"/>
+<div>
+<span>GET IT ON</span>
+<strong>Google Play</strong>
+</div>
+</a>
+</div>
+</div>
+</div>
+<!-- PRE-REGISTRATION: TINT TRAIL (MOBILE) -->
+<div class="game-card reveal" data-category="mobile">
+<div class="game-img-wrapper">
+<div class="game-img" style="background-image: url('https://play-lh.googleusercontent.com/Idey_adu4Za4_gCvxnuV8TYRGov7Lg-FEL54w1y0ckhPM937xFfZkvF70SvLhJzHmF7NY06mCY48nSZtxUK2=w480-h960-rw');"></div>
+</div>
+<div class="game-content">
+<span class="tag" style="background: rgba(255, 193, 7, 0.1); color: #ffc107; border-color: #ffc107;">Pre-Registration</span>
+<h3>Tint Trail</h3>
+<p>Leave your mark! Navigate through colorful puzzles and paint your way to victory in this vibrant adventure.</p>
+<div class="game-links">
+<a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.tinttrail&amp;hl=en-US" target="_blank">
+<img alt="Google Play Icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"/>
+<div>
+<span>PRE-REGISTER ON</span>
+<strong>Google Play</strong>
+</div>
+</a>
+</div>
+</div>
+</div>
+<!-- MOBILE GAME 3 -->
+<div class="game-card reveal" data-category="mobile">
+<div class="game-img-wrapper">
+<div class="game-img" style="background-image: url('https://play-lh.googleusercontent.com/lALl9JPWDRJERlrWdmrCFYNKhw2cJgfEQ3XEu7pYjrFpkKPPUgCzYv6447730quuMrhzZts0Tm2-ZgIKMYZqS2E=w240-h480-rw');"></div>
+</div>
+<div class="game-content">
+<span class="tag">Mobile Game</span>
+<h3>Hezarfen</h3>
+<p>Take to the skies! Soar through the air and master the art of flying in this unique adventure.</p>
+<div class="game-links">
+<a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.hezarfen&amp;hl=en-US" target="_blank">
+<img alt="Google Play Icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"/>
+<div>
+<span>GET IT ON</span>
+<strong>Google Play</strong>
+</div>
+</a>
+</div>
+</div>
+</div>
+<!-- MAHJONG SIGHTS -->
+<div class="game-card reveal" data-category="mobile">
+<div class="game-img-wrapper">
+<div class="game-img" style="background-image: url('https://play-lh.googleusercontent.com/gx6m-sb3eRtZVVgt4lNAw_M0GvLp510vpkrs98RtOJrMLzNIbUEgirZONBT7Wl7sjoeC27M7wx6Hn5ERWIx5Dw=w240-h480-rw');"></div>
+</div>
+<div class="game-content">
+<span class="tag">Mobile Game</span>
+<h3>Mahjong Sights</h3>
+<p>Relax and challenge your brain with classic Mahjong puzzles in beautiful, immersive settings.</p>
+<div class="game-links">
+<a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.mahjongsights&amp;hl=en-US" target="_blank">
+<img alt="Google Play Icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"/>
+<div>
+<span>GET IT ON</span>
+<strong>Google Play</strong>
+</div>
+</a>
+</div>
+</div>
+</div>
+<!-- COMING SOON PROJECT -->
+<div class="game-card reveal" data-category="vr console">
+<div class="game-img-wrapper">
+<div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
+</div>
+<div class="game-content">
+<span class="tag" style="background: rgba(255,0,85,0.1); color:#ff0055; border-color: #ff0055;">In Development</span>
+<h3>Unannounced VR Project</h3>
+<p>We are currently working on top-secret immersive experiences for VR and Next-Gen Consoles.</p>
+<div class="game-links">
+<span style="color: #66fcf1; font-weight: bold; padding: 10px 0; text-shadow: 0 0 10px rgba(102, 252, 241, 0.5); font-size: 1.2rem;">Coming 2027</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="minigame-section reveal" id="minigame">
+<h2 class="section-title">Take a Break: Neon Defender</h2>
+<canvas height="300" id="gameCanvas" width="600"></canvas>
+<p class="game-instructions">Hover over the canvas to aim. Click to shoot the falling neon blocks!</p>
+</section>
+<footer>
+<p>© 2026 Peacy Games. All rights reserved.</p>
+</footer>
+<script>
     // --- 1. GAME CATEGORY FILTER ---
     function filterGames(category) {
       const buttons = document.querySelectorAll('.filter-btn');
