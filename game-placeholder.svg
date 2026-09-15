@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-label="Peacy Games artwork loading placeholder">
+<defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#0b0c10"/><stop offset="1" stop-color="#1f2833"/></linearGradient></defs>
+<rect width="640" height="360" fill="url(#g)"/>
+<path d="M0 280 C150 210 270 330 410 245 S560 190 640 230 V360 H0Z" fill="#101820"/>
+<text x="320" y="185" fill="#66fcf1" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" text-anchor="middle" letter-spacing="3">PEACY GAMES</text>
+<text x="320" y="220" fill="#8b949e" font-family="Arial,Helvetica,sans-serif" font-size="14" text-anchor="middle">GAME ARTWORK</text>
+</svg>

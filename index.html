@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Peacy Games | Independent Game Development Studio</title>
-<meta name="description" content="Peacy Games is an independent game development studio creating PC, mobile, VR and console games. Discover Demon Alive, Tig Tag Flag, Up Break, Mahjong Sights and upcoming titles."/>
+<meta name="description" content="Peacy Games is an independent game studio creating PC, mobile, VR and console games. Discover Demon Alive, Tig Tag Flag, Up Break, Mahjong Sights and more."/>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
 <meta name="author" content="Peacy Games"/>
 <meta name="application-name" content="Peacy Games"/>
@@ -134,23 +134,37 @@
       text-decoration: none;
     }
 
+    .nav-brand-row {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+    }
+
     .logo-img {
-      height: 50px;
-      width: auto;
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
-      filter: drop-shadow(0 0 5px rgba(102, 252, 241, 0.5));
-      animation: pulseLogo 3s infinite alternate;
+      width: 220px;
+      height: 55px;
+      max-width: 55vw;
+      object-fit: contain;
+      display: block;
     }
 
-    @keyframes pulseLogo {
-      0% { filter: drop-shadow(0 0 5px rgba(102, 252, 241, 0.4)); }
-      100% { filter: drop-shadow(0 0 15px rgba(102, 252, 241, 0.8)); transform: scale(1.02); }
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      margin-left: 12px;
+      padding: 9px;
+      border: 1px solid rgba(102, 252, 241, 0.45);
+      border-radius: 10px;
+      background: rgba(31, 40, 51, 0.85);
+      color: var(--accent-cyan);
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
     }
-
-    .logo-img:hover {
-      transform: scale(1.1) rotate(-3deg);
-      filter: drop-shadow(0 0 20px var(--accent-cyan));
-    }
+    .menu-toggle span { display: block; height: 2px; width: 100%; background: currentColor; border-radius: 2px; }
+    .menu-toggle:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 3px; }
 
     .nav-links {
       display: flex;
@@ -209,29 +223,23 @@
       padding: 0 20px;
       position: relative;
       background: linear-gradient(-45deg, #0b0c10, #171d26, #0f1821, #0b0c10);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
+      background-size: 100% 100%;
       overflow: hidden;
     }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
 
     .hero-content {
       z-index: 2;
-      animation: floatHero 6s ease-in-out infinite;
-    }
-
-    @keyframes floatHero {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
+      max-width: 1000px;
     }
 
     .hero h1 {
-      font-size: 4.5rem;
+      overflow-wrap: anywhere;
+      text-wrap: balance;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
       color: var(--text-white);
       margin-bottom: 15px;
       text-transform: uppercase;
@@ -320,6 +328,8 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    .hero .reveal { opacity: 1; transform: none; transition: none; }
 
     /* --- PLATFORMS --- */
     .platforms-grid {
@@ -424,11 +434,12 @@
     }
 
     .game-img {
+      display: block;
       width: 100%;
       height: 100%;
-      background-size: cover;
-      background-position: center;
-      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.35s ease;
     }
 
     .game-card:hover .game-img { transform: scale(1.1); }
@@ -488,11 +499,12 @@
       gap: 12px;
     }
 
-    .store-badge img {
+    .store-icon {
+      width: 24px;
       height: 24px;
-      width: auto;
-      filter: brightness(0.9);
-      transition: filter 0.3s;
+      flex: 0 0 24px;
+      color: #fff;
+      display: block;
     }
 
     .store-badge div {
@@ -521,7 +533,7 @@
       box-shadow: 0 5px 15px rgba(102, 192, 244, 0.3);
       transform: translateY(-3px);
     }
-    .steam-btn:hover img { filter: brightness(1); }
+    .steam-btn:hover .store-icon { color: #66c0f4; }
     .steam-btn:hover div strong { color: #66c0f4; }
 
     .play-btn:hover {
@@ -530,7 +542,7 @@
       box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
       transform: translateY(-3px);
     }
-    .play-btn:hover img { filter: brightness(1); }
+    .play-btn:hover .store-icon { color: #00ff00; }
     .play-btn:hover div strong { color: #00ff00; }
 
     /* --- MINIGAME SECTION --- */
@@ -562,13 +574,9 @@
       color: var(--accent-cyan);
       font-weight: bold;
       letter-spacing: 1px;
-      animation: pulseText 2s infinite;
+
     }
 
-    @keyframes pulseText {
-      0%, 100% { opacity: 0.7; }
-      50% { opacity: 1; text-shadow: 0 0 8px var(--accent-cyan); }
-    }
 
     /* --- FOOTER --- */
     /* --- ABOUT / BRAND ENTITY --- */
@@ -641,23 +649,90 @@
       z-index: 9999;
     }
     @keyframes explode {
-      0% { width: 0; height: 0; opacity: 1; box-shadow: 0 0 20px var(--accent-cyan) inset; }
-      100% { width: 80px; height: 80px; opacity: 0; border-width: 0px; }
+      0% { transform: translate(-50%, -50%) scale(0.15); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(1.8); opacity: 0; }
     }
     @keyframes floatUp {
       0% { transform: translateY(0) scale(0.5); opacity: 0; }
       20% { transform: translateY(-20px) scale(1.2); opacity: 1; }
-      100% { transform: translateY(-150px) scale(2); opacity: 0; filter: blur(4px); }
+      100% { transform: translateY(-150px) scale(1.6); opacity: 0; }
+    }
+
+    /* --- PERFORMANCE + RESPONSIVE --- */
+    #about, #platforms, #games, #minigame {
+      content-visibility: auto;
+      contain-intrinsic-size: 900px;
+    }
+
+    @media screen and (max-width: 900px), (max-device-width: 900px) {
+      nav { flex-wrap: wrap; gap: 0; padding: 8px 4%; backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: 0 2px 14px rgba(0,0,0,0.35); }
+      .nav-brand-row { width: 100%; justify-content: space-between; }
+      .menu-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding: 10px 0 4px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a {
+        margin-left: 0;
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 0.95rem;
+        border-radius: 8px;
+      }
+      .nav-links a:hover { background: rgba(102, 252, 241, 0.08); }
+      .shop-link { padding: 10px 14px; text-align: center; }
+      .hero { min-height: 72vh; padding: 58px 18px 44px; }
+      .hero h1 { font-size: clamp(2rem, 8vw, 3.2rem); line-height: 1.08; letter-spacing: 0.5px; }
+      .hero p { font-size: 1.05rem; }
+      section { padding: 72px 5%; }
+      .section-title { font-size: clamp(1.9rem, 7vw, 2.7rem); margin-bottom: 42px; }
+      .games-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    }
+
+    @media screen and (max-width: 560px), (max-device-width: 560px) {
+      .logo-img { width: 180px; height: 45px; max-width: 62vw; }
+      .hero { min-height: 70vh; padding-top: 46px; }
+      .hero h1 { font-size: clamp(1.75rem, 8vw, 2.25rem); text-shadow: none; }
+      .hero h1 span { text-shadow: none; }
+      .hero p { font-size: 0.98rem; margin-bottom: 28px; }
+      .btn { padding: 12px 24px; font-size: 0.92rem; }
+      .games-grid { grid-template-columns: 1fr; }
+      .game-img-wrapper { height: 200px; }
+      .game-content { padding: 22px; }
+      .filter-buttons { gap: 8px; }
+      .filter-btn { padding: 9px 16px; font-size: 0.88rem; }
+      .official-links { flex-direction: column; align-items: stretch; }
+      .official-links a { text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
-<nav>
-<a class="logo-container" href="#hero">
-<img alt="Peacy Games Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" src="logo.png"/>
+<nav aria-label="Primary navigation">
+<div class="nav-brand-row">
+<a class="logo-container" href="#hero" aria-label="Peacy Games home">
+<img alt="Peacy Games Logo" class="logo-img" src="data:image/webp;base64,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" width="220" height="55" decoding="sync" fetchpriority="high"/>
 <h2 style="display: none; color: var(--accent-cyan); margin: 0; text-shadow: 0 0 15px var(--accent-cyan); letter-spacing: 1px;">PEACY GAMES</h2>
 </a>
-<div class="nav-links">
+<button class="menu-toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Open navigation menu">
+<span></span><span></span><span></span>
+</button>
+</div>
+<div class="nav-links" id="site-menu">
 <a href="#hero">Home</a>
 <a href="#about">About Peacy Games</a>
 <a href="#platforms">Platforms</a>
@@ -669,9 +744,9 @@
 <main>
 <section class="hero" id="hero">
 <div class="hero-content">
-<h1 class="reveal">Peacy Games – <span>Independent Game Development Studio</span></h1>
-<p class="reveal">Peacy Games creates original games for PC, mobile, virtual reality, and consoles. Explore our released titles, upcoming projects, and official store pages.</p>
-<a class="btn reveal" href="#games">Discover Games</a>
+<h1>Peacy Games – <span>Independent Game Development Studio</span></h1>
+<p>Peacy Games creates original games for PC, mobile, virtual reality, and consoles. Explore our released titles, upcoming projects, and official store pages.</p>
+<a class="btn" href="#games">Discover Games</a>
 </div>
 </section>
 <section class="about-section" id="about">
@@ -709,16 +784,16 @@
 <section id="games">
 <h2 class="section-title reveal">Our Games</h2>
 <div class="filter-buttons reveal">
-<button class="filter-btn active" onclick="filterGames('all')">All</button>
-<button class="filter-btn" onclick="filterGames('pc')">PC</button>
-<button class="filter-btn" onclick="filterGames('mobile')">Mobile</button>
-<button class="filter-btn" onclick="filterGames('vr')">VR / Console</button>
+<button class="filter-btn active" onclick="filterGames('all', this)">All</button>
+<button class="filter-btn" onclick="filterGames('pc', this)">PC</button>
+<button class="filter-btn" onclick="filterGames('mobile', this)">Mobile</button>
+<button class="filter-btn" onclick="filterGames('vr', this)">VR / Console</button>
 </div>
 <div class="games-grid">
 <!-- PC GAME -->
 <div class="game-card reveal" data-category="pc">
 <div class="game-img-wrapper">
-<div class="game-img" style="background-image: url('https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3339100/header.jpg?t=1761659483');"></div>
+<img class="game-img defer-img" src="game-placeholder.svg" data-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3339100/header_292x136.jpg?t=1761659483" alt="Demon Alive game artwork" width="640" height="360" loading="lazy" decoding="async"/>
 </div>
 <div class="game-content">
 <span class="tag">PC Game</span>
@@ -726,7 +801,7 @@
 <p>Face the darkness in this thrilling PC experience. Survive, fight, and conquer your inner demons.</p>
 <div class="game-links">
 <a class="store-badge steam-btn" href="https://store.steampowered.com/app/3339100/Demon_Alive/" target="_blank" rel="noopener noreferrer">
-<img alt="Steam Icon" src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg"/>
+<svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7.4 14.9 11 11.3m0 0 3.3 3.3M11 11.3l2.1-2.1a3.2 3.2 0 1 1 4.5 4.5l-2.1 2.1M7.1 15.2a2.6 2.6 0 1 0 3.7 3.7 2.6 2.6 0 0 0 0-3.7 2.6 2.6 0 0 0-3.7 0Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
 <div>
 <span>Available on</span>
 <strong>Steam</strong>
@@ -738,7 +813,7 @@
 <!-- PRE-REGISTRATION: ICE CREAM TRUCK SIMULATOR (PC) -->
 <div class="game-card reveal" data-category="pc">
 <div class="game-img-wrapper">
-<div class="game-img" style="background-image: url('https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5008120/3a3015ede2fa4dd6605056ae609328277397e0b8/header.jpg?t=1786284698');"></div>
+<img class="game-img defer-img" src="game-placeholder.svg" data-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5008120/3a3015ede2fa4dd6605056ae609328277397e0b8/header_292x136.jpg?t=1786284698" alt="Ice Cream Truck Simulator game artwork" width="640" height="360" loading="lazy" decoding="async"/>
 </div>
 <div class="game-content">
 <span class="tag" style="background: rgba(255, 193, 7, 0.1); color: #ffc107; border-color: #ffc107;">Coming Soon</span>
@@ -746,7 +821,7 @@
 <p>Build your sweet empire! Drive, customize, and manage your very own ice cream business in this fun simulator.</p>
 <div class="game-links">
 <a class="store-badge steam-btn" href="https://store.steampowered.com/app/5008120/Ice_Cream_Truck_Simulator/" target="_blank" rel="noopener noreferrer">
-<img alt="Steam Icon" src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg"/>
+<svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7.4 14.9 11 11.3m0 0 3.3 3.3M11 11.3l2.1-2.1a3.2 3.2 0 1 1 4.5 4.5l-2.1 2.1M7.1 15.2a2.6 2.6 0 1 0 3.7 3.7 2.6 2.6 0 0 0 0-3.7 2.6 2.6 0 0 0-3.7 0Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
 <div>
 <span>WISHLIST ON</span>
 <strong>Steam</strong>
@@ -758,7 +833,7 @@
 <!-- MOBILE GAME 1 -->
 <div class="game-card reveal" data-category="mobile">
 <div class="game-img-wrapper">
-<div class="game-img" style="background-image: url('https://play-lh.googleusercontent.com/hWzXMwhQjE0DqjGctr9NYXUHTGZZqJQd3ujTRwYGX8Od7OpkntSdVgGxL87tekdrSEIOVz0OOlDdMy9Voy2m=w240-h480-rw');"></div>
+<img class="game-img defer-img" src="game-placeholder.svg" data-src="https://play-lh.googleusercontent.com/hWzXMwhQjE0DqjGctr9NYXUHTGZZqJQd3ujTRwYGX8Od7OpkntSdVgGxL87tekdrSEIOVz0OOlDdMy9Voy2m=w240-h480-rw" alt="Tig Tag Flag mobile game artwork" width="640" height="360" loading="lazy" decoding="async"/>
 </div>
 <div class="game-content">
 <span class="tag">Mobile Game</span>
@@ -766,7 +841,7 @@
 <p>A fun and fast-paced mobile game. Grab the flag, outsmart your opponents, and claim victory!</p>
 <div class="game-links">
 <a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.tigtagflag&amp;hl=en-US" target="_blank" rel="noopener noreferrer">
-<img alt="Google Play Icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"/>
+<svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.2 4.1 18.4 10a2.3 2.3 0 0 1 0 4L8.2 19.9A2.3 2.3 0 0 1 4.8 18V6a2.3 2.3 0 0 1 3.4-1.9Z" fill="currentColor"/></svg>
 <div>
 <span>GET IT ON</span>
 <strong>Google Play</strong>
@@ -778,7 +853,7 @@
 <!-- MOBILE GAME 2 -->
 <div class="game-card reveal" data-category="mobile">
 <div class="game-img-wrapper">
-<div class="game-img" style="background-image: url('https://play-lh.googleusercontent.com/5Y_3ZQp3ouSlZAbSb72Kj3uxCdrSmuARAgrSvoa5Y9Suo9vPJFN0DWPRNsdyUYwEjugbRWOHZ1OdORN3JPL-eg=w240-h480-rw');"></div>
+<img class="game-img defer-img" src="game-placeholder.svg" data-src="https://play-lh.googleusercontent.com/5Y_3ZQp3ouSlZAbSb72Kj3uxCdrSmuARAgrSvoa5Y9Suo9vPJFN0DWPRNsdyUYwEjugbRWOHZ1OdORN3JPL-eg=w240-h480-rw" alt="Up Break mobile game artwork" width="640" height="360" loading="lazy" decoding="async"/>
 </div>
 <div class="game-content">
 <span class="tag">Mobile Game</span>
@@ -786,7 +861,7 @@
 <p>Break your way up in this highly addictive arcade experience. How high can you climb?</p>
 <div class="game-links">
 <a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.upbreak&amp;hl=en-US" target="_blank" rel="noopener noreferrer">
-<img alt="Google Play Icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"/>
+<svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.2 4.1 18.4 10a2.3 2.3 0 0 1 0 4L8.2 19.9A2.3 2.3 0 0 1 4.8 18V6a2.3 2.3 0 0 1 3.4-1.9Z" fill="currentColor"/></svg>
 <div>
 <span>GET IT ON</span>
 <strong>Google Play</strong>
@@ -798,7 +873,7 @@
 <!-- PRE-REGISTRATION: TINT TRAIL (MOBILE) -->
 <div class="game-card reveal" data-category="mobile">
 <div class="game-img-wrapper">
-<div class="game-img" style="background-image: url('https://play-lh.googleusercontent.com/Idey_adu4Za4_gCvxnuV8TYRGov7Lg-FEL54w1y0ckhPM937xFfZkvF70SvLhJzHmF7NY06mCY48nSZtxUK2=w480-h960-rw');"></div>
+<img class="game-img defer-img" src="game-placeholder.svg" data-src="https://play-lh.googleusercontent.com/Idey_adu4Za4_gCvxnuV8TYRGov7Lg-FEL54w1y0ckhPM937xFfZkvF70SvLhJzHmF7NY06mCY48nSZtxUK2=w240-h480-rw" alt="Tint Trail mobile game artwork" width="640" height="360" loading="lazy" decoding="async"/>
 </div>
 <div class="game-content">
 <span class="tag" style="background: rgba(255, 193, 7, 0.1); color: #ffc107; border-color: #ffc107;">Pre-Registration</span>
@@ -806,7 +881,7 @@
 <p>Leave your mark! Navigate through colorful puzzles and paint your way to victory in this vibrant adventure.</p>
 <div class="game-links">
 <a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.tinttrail&amp;hl=en-US" target="_blank" rel="noopener noreferrer">
-<img alt="Google Play Icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"/>
+<svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.2 4.1 18.4 10a2.3 2.3 0 0 1 0 4L8.2 19.9A2.3 2.3 0 0 1 4.8 18V6a2.3 2.3 0 0 1 3.4-1.9Z" fill="currentColor"/></svg>
 <div>
 <span>PRE-REGISTER ON</span>
 <strong>Google Play</strong>
@@ -818,7 +893,7 @@
 <!-- MOBILE GAME 3 -->
 <div class="game-card reveal" data-category="mobile">
 <div class="game-img-wrapper">
-<div class="game-img" style="background-image: url('https://play-lh.googleusercontent.com/lALl9JPWDRJERlrWdmrCFYNKhw2cJgfEQ3XEu7pYjrFpkKPPUgCzYv6447730quuMrhzZts0Tm2-ZgIKMYZqS2E=w240-h480-rw');"></div>
+<img class="game-img defer-img" src="game-placeholder.svg" data-src="https://play-lh.googleusercontent.com/lALl9JPWDRJERlrWdmrCFYNKhw2cJgfEQ3XEu7pYjrFpkKPPUgCzYv6447730quuMrhzZts0Tm2-ZgIKMYZqS2E=w240-h480-rw" alt="Hezarfen mobile game artwork" width="640" height="360" loading="lazy" decoding="async"/>
 </div>
 <div class="game-content">
 <span class="tag">Mobile Game</span>
@@ -826,7 +901,7 @@
 <p>Take to the skies! Soar through the air and master the art of flying in this unique adventure.</p>
 <div class="game-links">
 <a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.hezarfen&amp;hl=en-US" target="_blank" rel="noopener noreferrer">
-<img alt="Google Play Icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"/>
+<svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.2 4.1 18.4 10a2.3 2.3 0 0 1 0 4L8.2 19.9A2.3 2.3 0 0 1 4.8 18V6a2.3 2.3 0 0 1 3.4-1.9Z" fill="currentColor"/></svg>
 <div>
 <span>GET IT ON</span>
 <strong>Google Play</strong>
@@ -838,7 +913,7 @@
 <!-- MAHJONG SIGHTS -->
 <div class="game-card reveal" data-category="mobile">
 <div class="game-img-wrapper">
-<div class="game-img" style="background-image: url('https://play-lh.googleusercontent.com/gx6m-sb3eRtZVVgt4lNAw_M0GvLp510vpkrs98RtOJrMLzNIbUEgirZONBT7Wl7sjoeC27M7wx6Hn5ERWIx5Dw=w240-h480-rw');"></div>
+<img class="game-img defer-img" src="game-placeholder.svg" data-src="https://play-lh.googleusercontent.com/gx6m-sb3eRtZVVgt4lNAw_M0GvLp510vpkrs98RtOJrMLzNIbUEgirZONBT7Wl7sjoeC27M7wx6Hn5ERWIx5Dw=w240-h480-rw" alt="Mahjong Sights mobile game artwork" width="640" height="360" loading="lazy" decoding="async"/>
 </div>
 <div class="game-content">
 <span class="tag">Mobile Game</span>
@@ -846,7 +921,7 @@
 <p>Relax and challenge your brain with classic Mahjong puzzles in beautiful, immersive settings.</p>
 <div class="game-links">
 <a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.mahjongsights&amp;hl=en-US" target="_blank" rel="noopener noreferrer">
-<img alt="Google Play Icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"/>
+<svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.2 4.1 18.4 10a2.3 2.3 0 0 1 0 4L8.2 19.9A2.3 2.3 0 0 1 4.8 18V6a2.3 2.3 0 0 1 3.4-1.9Z" fill="currentColor"/></svg>
 <div>
 <span>GET IT ON</span>
 <strong>Google Play</strong>
@@ -858,7 +933,7 @@
 <!-- COMING SOON PROJECT -->
 <div class="game-card reveal" data-category="vr console">
 <div class="game-img-wrapper">
-<div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80');"></div>
+<img class="game-img defer-img" src="game-placeholder.svg" data-src="https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=640&amp;q=60" alt="Unannounced VR project artwork" width="640" height="360" loading="lazy" decoding="async"/>
 </div>
 <div class="game-content">
 <span class="tag" style="background: rgba(255,0,85,0.1); color:#ff0055; border-color: #ff0055;">In Development</span>
@@ -882,11 +957,45 @@
 <p>© 2026 Peacy Games. All rights reserved. · <a href="https://peacy.games/" style="color: var(--accent-cyan);">Official Website</a> · <a href="ebooks.html" style="color: var(--accent-cyan);">Ebook Shop</a></p>
 </footer>
 <script>
+
+    // --- LAZY-LOAD THIRD-PARTY GAME ART ONLY WHEN IT ENTERS THE VIEWPORT ---
+    const deferredImages = document.querySelectorAll('img.defer-img[data-src]');
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const img = entry.target;
+          img.src = img.dataset.src;
+          img.removeAttribute('data-src');
+          observer.unobserve(img);
+        });
+      }, { rootMargin: '0px 0px 80px 0px' });
+      deferredImages.forEach(img => imageObserver.observe(img));
+    } else {
+      deferredImages.forEach(img => { img.src = img.dataset.src; img.removeAttribute('data-src'); });
+    }
+
+    // --- MOBILE NAVIGATION ---
+    const menuToggle = document.querySelector('.menu-toggle');
+    const siteMenu = document.getElementById('site-menu');
+    if (menuToggle && siteMenu) {
+      menuToggle.addEventListener('click', () => {
+        const open = siteMenu.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(open));
+        menuToggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+      });
+      siteMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+        siteMenu.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open navigation menu');
+      }));
+    }
+
     // --- 1. GAME CATEGORY FILTER ---
-    function filterGames(category) {
+    function filterGames(category, trigger) {
       const buttons = document.querySelectorAll('.filter-btn');
       buttons.forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
+      if (trigger) trigger.classList.add('active');
 
       const cards = document.querySelectorAll('.game-card');
       cards.forEach(card => {
@@ -969,6 +1078,7 @@
     let score = 0;
     let gameActive = true;
     let particles = []; // Neue Partikel für Explosionen
+    let gameVisible = false;
 
     canvas.addEventListener('mousemove', (e) => {
       const rect = canvas.getBoundingClientRect();
@@ -981,12 +1091,21 @@
       bullets.push({ x: playerX, y: canvas.height - 20, speed: 8 });
     });
 
-    setInterval(() => {
-      if(gameActive && document.hasFocus()) {
-        const x = Math.random() * (canvas.width - 20) + 10;
-        enemies.push({ x: x, y: 0, speed: Math.random() * 1.5 + 0.8 });
-      }
-    }, 800);
+    let enemyTimer = null;
+    function startEnemySpawner() {
+      if (enemyTimer) return;
+      enemyTimer = setInterval(() => {
+        if(gameActive && gameVisible && document.hasFocus()) {
+          const x = Math.random() * (canvas.width - 20) + 10;
+          enemies.push({ x: x, y: 0, speed: Math.random() * 1.5 + 0.8 });
+        }
+      }, 800);
+    }
+    function stopEnemySpawner() {
+      if (!enemyTimer) return;
+      clearInterval(enemyTimer);
+      enemyTimer = null;
+    }
 
     function createExplosion(x, y) {
       for(let i = 0; i < 8; i++) {
@@ -1076,10 +1195,21 @@
       ctx.font = 'bold 18px Arial';
       ctx.fillText('SCORE: ' + score, 15, 25);
 
-      requestAnimationFrame(gameLoop);
+      if (gameVisible) requestAnimationFrame(gameLoop);
     }
 
-    gameLoop();
+    const gameVisibilityObserver = new IntersectionObserver((entries) => {
+      const visible = entries[0].isIntersecting;
+      if (visible && !gameVisible) {
+        gameVisible = true;
+        startEnemySpawner();
+        requestAnimationFrame(gameLoop);
+      } else if (!visible) {
+        gameVisible = false;
+        stopEnemySpawner();
+      }
+    }, { rootMargin: '200px 0px' });
+    gameVisibilityObserver.observe(canvas);
   </script>
 </body>
 </html>
