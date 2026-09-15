@@ -4,7 +4,83 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Peacy Games – Game Development Studio</title>
+<title>Peacy Games | Independent Game Development Studio</title>
+<meta name="description" content="Peacy Games is an independent game development studio creating PC, mobile, VR and console games. Discover Demon Alive, Tig Tag Flag, Up Break, Mahjong Sights and upcoming titles."/>
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+<meta name="author" content="Peacy Games"/>
+<meta name="application-name" content="Peacy Games"/>
+<meta name="theme-color" content="#0b0c10"/>
+<link rel="canonical" href="https://peacy.games/"/>
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png"/>
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png"/>
+<link rel="apple-touch-icon" href="favicon-192.png"/>
+<link rel="manifest" href="site.webmanifest"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Peacy Games"/>
+<meta property="og:title" content="Peacy Games | Independent Game Development Studio"/>
+<meta property="og:description" content="Official website of Peacy Games, an independent studio creating games for PC, mobile, VR and consoles."/>
+<meta property="og:url" content="https://peacy.games/"/>
+<meta property="og:image" content="https://peacy.games/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Peacy Games – Independent Game Development Studio"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Peacy Games | Independent Game Development Studio"/>
+<meta name="twitter:description" content="Official website of Peacy Games. Explore our PC, mobile, VR and console games."/>
+<meta name="twitter:image" content="https://peacy.games/og-image.png"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://peacy.games/#organization",
+      "name": "Peacy Games",
+      "url": "https://peacy.games/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://peacy.games/logo.png"
+      },
+      "description": "Peacy Games is an independent game development studio creating games for PC, mobile, VR and consoles.",
+      "sameAs": [
+        "https://store.steampowered.com/curator/45365075-Peacy-Games/",
+        "https://play.google.com/store/apps/dev?id=6451166670350105781"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://peacy.games/#website",
+      "url": "https://peacy.games/",
+      "name": "Peacy Games",
+      "publisher": {"@id": "https://peacy.games/#organization"},
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://peacy.games/#webpage",
+      "url": "https://peacy.games/",
+      "name": "Peacy Games | Independent Game Development Studio",
+      "isPartOf": {"@id": "https://peacy.games/#website"},
+      "about": {"@id": "https://peacy.games/#organization"},
+      "description": "Official website of Peacy Games, an independent studio creating PC, mobile, VR and console games.",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "ItemList",
+      "name": "Games by Peacy Games",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Demon Alive","url":"https://store.steampowered.com/app/3339100/Demon_Alive/"},
+        {"@type":"ListItem","position":2,"name":"Ice Cream Truck Simulator","url":"https://store.steampowered.com/app/5008120/Ice_Cream_Truck_Simulator/"},
+        {"@type":"ListItem","position":3,"name":"Tig Tag Flag","url":"https://play.google.com/store/apps/details?id=com.peacygames.tigtagflag"},
+        {"@type":"ListItem","position":4,"name":"Up Break","url":"https://play.google.com/store/apps/details?id=com.peacygames.upbreak"},
+        {"@type":"ListItem","position":5,"name":"Tint Trail","url":"https://play.google.com/store/apps/details?id=com.peacygames.tinttrail"},
+        {"@type":"ListItem","position":6,"name":"Hezarfen","url":"https://play.google.com/store/apps/details?id=com.peacygames.hezarfen"},
+        {"@type":"ListItem","position":7,"name":"Mahjong Sights","url":"https://play.google.com/store/apps/details?id=com.peacygames.mahjongsights"}
+      ]
+    }
+  ]
+}
+</script>
 <style>
     :root {
       --bg-main: #0b0c10;
@@ -495,6 +571,46 @@
     }
 
     /* --- FOOTER --- */
+    /* --- ABOUT / BRAND ENTITY --- */
+    .about-section {
+      background: linear-gradient(180deg, rgba(31, 40, 51, 0.25), rgba(11, 12, 16, 0.9));
+      border-top: 1px solid rgba(102, 252, 241, 0.08);
+      border-bottom: 1px solid rgba(102, 252, 241, 0.08);
+    }
+
+    .about-content {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.08rem;
+    }
+
+    .about-content p + p { margin-top: 18px; }
+
+    .official-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .official-links a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      border: 1px solid rgba(102, 252, 241, 0.55);
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+
+    .official-links a:hover {
+      background: var(--accent-cyan);
+      color: var(--bg-main);
+      box-shadow: 0 0 18px rgba(102, 252, 241, 0.35);
+    }
+
     footer {
       background: #050608;
       text-align: center;
@@ -534,7 +650,7 @@
       100% { transform: translateY(-150px) scale(2); opacity: 0; filter: blur(4px); }
     }
   </style>
-<meta content="Discover innovative games for PC, mobile, VR, and consoles from Peacy Games, your studio for interactive entertainment." name="description"/><link href="https://peacy.games/" rel="canonical"/></head>
+</head>
 <body>
 <nav>
 <a class="logo-container" href="#hero">
@@ -543,17 +659,30 @@
 </a>
 <div class="nav-links">
 <a href="#hero">Home</a>
+<a href="#about">About Peacy Games</a>
 <a href="#platforms">Platforms</a>
 <a href="#games">Our Games</a>
 <a href="#minigame">Play!</a>
 <a class="shop-link" href="ebooks.html">📚 Ebook Shop</a>
 </div>
 </nav>
+<main>
 <section class="hero" id="hero">
 <div class="hero-content">
-<h1 class="reveal">We Build <span>Worlds</span></h1>
-<p class="reveal">Passionate game development for PC, Mobile, Virtual Reality, and Next-Gen Consoles. Experience the future of interactive entertainment.</p>
+<h1 class="reveal">Peacy Games – <span>Independent Game Development Studio</span></h1>
+<p class="reveal">Peacy Games creates original games for PC, mobile, virtual reality, and consoles. Explore our released titles, upcoming projects, and official store pages.</p>
 <a class="btn reveal" href="#games">Discover Games</a>
+</div>
+</section>
+<section class="about-section" id="about">
+<h2 class="section-title reveal">About Peacy Games</h2>
+<div class="about-content reveal">
+<p><strong>Peacy Games</strong> is an independent game development studio focused on creating distinctive interactive experiences across PC, Android, VR, and console platforms.</p>
+<p>Our portfolio includes <strong>Demon Alive</strong>, <strong>Tig Tag Flag</strong>, <strong>Up Break</strong>, <strong>Hezarfen</strong>, <strong>Mahjong Sights</strong>, and more. This website is the official home of Peacy Games and links directly to our verified publisher and developer profiles.</p>
+<div class="official-links" aria-label="Official Peacy Games profiles">
+<a href="https://store.steampowered.com/curator/45365075-Peacy-Games/" target="_blank" rel="me noopener noreferrer">Peacy Games on Steam</a>
+<a href="https://play.google.com/store/apps/dev?id=6451166670350105781" target="_blank" rel="me noopener noreferrer">Peacy Games on Google Play</a>
+</div>
 </div>
 </section>
 <section id="platforms">
@@ -596,7 +725,7 @@
 <h3>Demon Alive</h3>
 <p>Face the darkness in this thrilling PC experience. Survive, fight, and conquer your inner demons.</p>
 <div class="game-links">
-<a class="store-badge steam-btn" href="https://store.steampowered.com/app/3339100/Demon_Alive/" target="_blank">
+<a class="store-badge steam-btn" href="https://store.steampowered.com/app/3339100/Demon_Alive/" target="_blank" rel="noopener noreferrer">
 <img alt="Steam Icon" src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg"/>
 <div>
 <span>Available on</span>
@@ -616,7 +745,7 @@
 <h3>Ice Cream Truck Simulator</h3>
 <p>Build your sweet empire! Drive, customize, and manage your very own ice cream business in this fun simulator.</p>
 <div class="game-links">
-<a class="store-badge steam-btn" href="https://store.steampowered.com/app/5008120/Ice_Cream_Truck_Simulator/" target="_blank">
+<a class="store-badge steam-btn" href="https://store.steampowered.com/app/5008120/Ice_Cream_Truck_Simulator/" target="_blank" rel="noopener noreferrer">
 <img alt="Steam Icon" src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg"/>
 <div>
 <span>WISHLIST ON</span>
@@ -636,7 +765,7 @@
 <h3>Tig Tag Flag</h3>
 <p>A fun and fast-paced mobile game. Grab the flag, outsmart your opponents, and claim victory!</p>
 <div class="game-links">
-<a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.tigtagflag&amp;hl=en-US" target="_blank">
+<a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.tigtagflag&amp;hl=en-US" target="_blank" rel="noopener noreferrer">
 <img alt="Google Play Icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"/>
 <div>
 <span>GET IT ON</span>
@@ -656,7 +785,7 @@
 <h3>Up Break</h3>
 <p>Break your way up in this highly addictive arcade experience. How high can you climb?</p>
 <div class="game-links">
-<a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.upbreak&amp;hl=en-US" target="_blank">
+<a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.upbreak&amp;hl=en-US" target="_blank" rel="noopener noreferrer">
 <img alt="Google Play Icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"/>
 <div>
 <span>GET IT ON</span>
@@ -676,7 +805,7 @@
 <h3>Tint Trail</h3>
 <p>Leave your mark! Navigate through colorful puzzles and paint your way to victory in this vibrant adventure.</p>
 <div class="game-links">
-<a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.tinttrail&amp;hl=en-US" target="_blank">
+<a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.tinttrail&amp;hl=en-US" target="_blank" rel="noopener noreferrer">
 <img alt="Google Play Icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"/>
 <div>
 <span>PRE-REGISTER ON</span>
@@ -696,7 +825,7 @@
 <h3>Hezarfen</h3>
 <p>Take to the skies! Soar through the air and master the art of flying in this unique adventure.</p>
 <div class="game-links">
-<a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.hezarfen&amp;hl=en-US" target="_blank">
+<a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.hezarfen&amp;hl=en-US" target="_blank" rel="noopener noreferrer">
 <img alt="Google Play Icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"/>
 <div>
 <span>GET IT ON</span>
@@ -716,7 +845,7 @@
 <h3>Mahjong Sights</h3>
 <p>Relax and challenge your brain with classic Mahjong puzzles in beautiful, immersive settings.</p>
 <div class="game-links">
-<a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.mahjongsights&amp;hl=en-US" target="_blank">
+<a class="store-badge play-btn" href="https://play.google.com/store/apps/details?id=com.peacygames.mahjongsights&amp;hl=en-US" target="_blank" rel="noopener noreferrer">
 <img alt="Google Play Icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"/>
 <div>
 <span>GET IT ON</span>
@@ -747,8 +876,10 @@
 <canvas height="300" id="gameCanvas" width="600"></canvas>
 <p class="game-instructions">Hover over the canvas to aim. Click to shoot the falling neon blocks!</p>
 </section>
+</main>
 <footer>
-<p>© 2026 Peacy Games. All rights reserved.</p>
+<p><strong>Peacy Games</strong> — Independent Game Development Studio</p>
+<p>© 2026 Peacy Games. All rights reserved. · <a href="https://peacy.games/" style="color: var(--accent-cyan);">Official Website</a> · <a href="ebooks.html" style="color: var(--accent-cyan);">Ebook Shop</a></p>
 </footer>
 <script>
     // --- 1. GAME CATEGORY FILTER ---
